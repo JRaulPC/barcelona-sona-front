@@ -1,9 +1,10 @@
+import Header from "../Header/Header";
 import "./App.css";
 
 const App = (): React.ReactElement => {
   return (
     <div className="container">
-      <h1>Barcelona Sona</h1>
+      <Header />
     </div>
   );
 };
