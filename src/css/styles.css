@@ -1,3 +1,16 @@
+:root {
+  --main-bg-color: #121212;
+  --card-bg: #1d1b20;
+  --main-font-color: #e1e1e1;
+  --secondary-font-color: #afafaf;
+  --ui-elements-grey: #cac4d0;
+  --main-purple: #7920ff;
+  --button-soft-red: #f2b8b5;
+  --toast-red: #b62828;
+  --toast-green: #30a75f;
+  --main-font: "space mono";
+}
+
 *,
 :before,
 :after {
@@ -11,6 +24,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  background-color: #000000;
 }
 
 ul {
