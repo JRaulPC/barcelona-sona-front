@@ -1,0 +1,35 @@
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: roboto, system-ui;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
