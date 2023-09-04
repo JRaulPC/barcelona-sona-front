@@ -1,5 +1,11 @@
+import "./App.css";
+
 const App = (): React.ReactElement => {
-  return <p>Hello world!</p>;
+  return (
+    <div className="container">
+      <h1>Barcelona Sona</h1>
+    </div>
+  );
 };
 
 export default App;
