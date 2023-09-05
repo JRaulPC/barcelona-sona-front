@@ -1,0 +1,18 @@
+.navigation-bar {
+  color: white;
+  display: flex;
+  width: 100vw;
+  justify-content: space-around;
+  padding: 16px;
+  position: fixed;
+  left: 0;
+  background-color: var(--ui-elements-color);
+  bottom: 0;
+  font-family: var(--text-font), system-ui;
+}
+
+.navigation-bar__elements {
+  display: flex;
+  color: white;
+  gap: 40px;
+}
