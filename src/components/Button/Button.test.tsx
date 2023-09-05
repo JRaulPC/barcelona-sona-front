@@ -7,11 +7,9 @@ describe("Given a Button componente", () => {
       const buttonText = "button";
 
       render(
-        <Button
-          text={buttonText}
-          className="button"
-          actionOnClick={() => {}}
-        />,
+        <Button className="button" actionOnClick={() => {}}>
+          <span>button</span>
+        </Button>,
       );
 
       const button = screen.getByRole("button", { name: buttonText });

@@ -1,9 +1,9 @@
 .header {
-  height: 40px;
-  padding: 26px;
+  margin-top: 41px;
   display: flex;
-  flex-direction: column;
+  gap: 41px;
   align-items: center;
+  justify-content: center;
 }
 
 .header__title {
@@ -11,24 +11,4 @@
   font-size: 1.3rem;
   color: var(--main-font-color);
   text-align: center;
-}
-
-.header-content {
-  gap: 4px;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-}
-
-.header__elements {
-  display: flex;
-  align-items: center;
-}
-
-.logout-button {
-  color: white;
-  background-color: blueviolet;
-  height: 50px;
-  border: 1px black solid;
 }

@@ -1,21 +1,21 @@
+import React from "react";
+
 interface ButtonProps {
   className: string;
   actionOnClick: () => void;
-  text: string;
+  children: React.ReactElement;
 }
 
 const Button = ({
   className,
   actionOnClick,
-  text,
+  children,
 }: ButtonProps): React.ReactElement => {
+  const buttonClass = className ? `button ${className}` : "button";
+
   return (
-    <button
-      type="button"
-      className={`button ${className ? `${className}` : ""}`}
-      onClick={actionOnClick}
-    >
-      {text}
+    <button type="button" className={buttonClass} onClick={actionOnClick}>
+      {children}
     </button>
   );
 };
