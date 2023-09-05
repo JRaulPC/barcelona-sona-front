@@ -1,12 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Given an App component", () => {
   describe("When it is rendered", () => {
     test("Then it should show the text 'Barcelona SONA' inside a header", () => {
       const expectedHeading = "Barcelona SONA";
 
-      render(<App />);
+      render(
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>,
+      );
 
       const heading = screen.getByRole("heading", { name: expectedHeading });
 

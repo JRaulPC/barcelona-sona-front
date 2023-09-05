@@ -10,19 +10,19 @@ const NavigationBar = (): React.ReactElement => {
           <NavLink to="/espacios" className="navigation-bar__link">
             <img
               src="/img/icon-list.png"
-              alt=""
+              alt="Link para acceder a la página de listado"
               width="24"
               height="24"
               className="navigation-bar__spots-logo"
             />
           </NavLink>
-          Expacios
+          Espacios
         </li>
         <li className="navigation-bar__element">
           <NavLink to="/añadir" className="navigation-bar__link">
             <img
               src="/img/icon-add.png"
-              alt=""
+              alt="Link para acceder a la página añadir un espacio"
               width="24"
               height="24"
               className="navigation-bar__-logo"
@@ -35,7 +35,7 @@ const NavigationBar = (): React.ReactElement => {
             <>
               <img
                 src="/img/icon-exit.png"
-                alt=""
+                alt="Botón para cerrar sesión de usuario"
                 width="24"
                 height="24"
                 className="navigation-bar__exit-logo"
