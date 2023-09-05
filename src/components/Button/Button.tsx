@@ -1,13 +1,15 @@
+import React from "react";
+
 interface ButtonProps {
   className: string;
   actionOnClick: () => void;
-  text: string;
+  children: React.ReactElement;
 }
 
 const Button = ({
   className,
   actionOnClick,
-  text,
+  children,
 }: ButtonProps): React.ReactElement => {
   return (
     <button
@@ -15,7 +17,7 @@ const Button = ({
       className={`button ${className ? `${className}` : ""}`}
       onClick={actionOnClick}
     >
-      {text}
+      {children}
     </button>
   );
 };

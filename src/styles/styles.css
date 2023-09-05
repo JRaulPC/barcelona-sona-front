@@ -1,9 +1,10 @@
 :root {
   --main-bg-color: #121212;
+  --nav-bg-color: #211f26;
   --card-bg: #1d1b20;
   --main-font-color: #e1e1e1;
-  --secondary-font-color: #afafaf;
-  --ui-elements-color: #cac4d0;
+  --secondary-font-color: #cac4d0;
+  --ui-selected-color: #4a4458;
   --main-checkbox-color: #7920ff;
   --button-soft-red: #f2b8b5;
   --toast-wrong: #b62828;
