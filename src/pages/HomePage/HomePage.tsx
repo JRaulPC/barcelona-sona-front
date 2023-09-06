@@ -28,7 +28,7 @@ const HomePage = (): React.ReactElement => {
         <Button className="login-button" actionOnClick={login}>
           <>
             <img
-              src="/img/github.png"
+              src="/img/github.svg"
               alt="Botón para iniciar sesión de usuario"
               width="28"
               height="28"
