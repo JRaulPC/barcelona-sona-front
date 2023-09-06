@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import HomePage from "./HomePage";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Given a HomePage page", () => {
   describe("When is rendered", () => {
@@ -7,11 +8,29 @@ describe("Given a HomePage page", () => {
       const headerText =
         "Consulta que espacios tienen su acústica registrada o añade el tuyo.";
 
-      render(<HomePage />);
+      render(
+        <BrowserRouter>
+          <HomePage />
+        </BrowserRouter>,
+      );
 
       const heading = screen.getByRole("heading", { name: headerText });
 
       expect(heading).toBeInTheDocument();
+    });
+
+    test("Then it should show a button with the text 'Entra con GitHub'", () => {
+      const buttonText = "Botón para iniciar sesión de usuario";
+
+      render(
+        <BrowserRouter>
+          <HomePage />
+        </BrowserRouter>,
+      );
+
+      const button = screen.getByLabelText(buttonText);
+
+      expect(button).toBeInTheDocument();
     });
   });
 });
