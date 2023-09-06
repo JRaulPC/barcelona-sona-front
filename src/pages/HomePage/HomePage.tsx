@@ -19,7 +19,7 @@ const HomePage = (): React.ReactElement => {
       </h2>
       <div className="homepage__elements">
         <img
-          src="/img/home-page-drawing.png"
+          src="/img/home-page-drawing.svg"
           alt="Fondo de la pantalla pagina de inicio"
           width="274"
           height="247"

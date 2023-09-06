@@ -6,10 +6,10 @@ const Header = (): React.ReactElement => {
       <h1 className="header__title">Barcelona SONA</h1>
       <img
         className="header__logo"
-        src="/img/app-logo.png"
+        src="/img/app-logo.svg"
         alt="Barcelona sona logo"
         width="62"
-        height="62"
+        height="57"
       />
     </header>
   );
