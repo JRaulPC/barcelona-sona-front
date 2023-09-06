@@ -1,8 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import App from "./App";
-
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 import { User } from "firebase/auth";
 
@@ -31,8 +30,8 @@ describe("Given an App component", () => {
   });
 
   describe("When the 'Entra con GitHub' button is clicked", () => {
-    test("Then it should show a page with a list of espacios", async () => {
-      const loginButtonText = "Botón para iniciar sesión de usuario";
+    test("Then it should show a page with the header 'Espacios'", async () => {
+      const loginButtonLabel = "Botón para iniciar sesión de usuario";
       const newExpectedHeading = "Espacios";
 
       render(
@@ -41,7 +40,7 @@ describe("Given an App component", () => {
         </BrowserRouter>,
       );
 
-      const loginButton = screen.getByLabelText(loginButtonText);
+      const loginButton = screen.getByLabelText(loginButtonLabel);
 
       await userEvent.click(loginButton);
 
@@ -55,11 +54,10 @@ describe("Given an App component", () => {
   });
 
   describe("When the 'Salir' button is clicked", () => {
-    const exitButtonLabel = "Click para salir de la aplicación";
-    const expectedHeading =
-      "Consulta que espacios tienen su acústica registrada o añade el tuyo.";
-
     test("Then it should show a page with the text 'Consulta que espacios tienen su acústica registrada o añade el tuyo.' as a heading", async () => {
+      const exitButtonLabel = "Click para salir de la aplicación";
+      const expectedHeading =
+        "Consulta que espacios tienen su acústica registrada o añade el tuyo.";
       render(
         <BrowserRouter>
           <App />
@@ -81,16 +79,17 @@ describe("Given an App component", () => {
     test("And no navigation bar has to be shown.", () => {
       const authStateHookMock: Partial<AuthStateHook> = [null as null];
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+      const listRoute = "/espacios";
+
       render(
-        <BrowserRouter>
+        <MemoryRouter initialEntries={[listRoute]}>
           <App />
-        </BrowserRouter>,
+        </MemoryRouter>,
       );
 
-      waitFor(() => {
-        const navBar = screen.getByRole("navigation");
-        expect(navBar).not.toBeInTheDocument();
-      });
+      const navBar = screen.queryByRole("navigation");
+
+      expect(navBar).not.toBeInTheDocument();
     });
   });
 });
