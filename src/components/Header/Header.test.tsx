@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import { describe } from "vitest";
+
 import Header from "./Header";
 
 describe("Given a Header component", () => {
   describe("When its rendered", () => {
-    test("Then it should show 'Barcelona Sona' as a header", () => {
+    test("Then it should show 'Barcelona Sona' as a heading", () => {
       const headerText = "Barcelona SONA";
 
       render(<Header />);

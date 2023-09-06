@@ -24,7 +24,7 @@ const NavigationBar = (): React.ReactElement => {
               <Button actionOnClick={logout} className="exit-button">
                 <>
                   <img
-                    src="/img/icon-exit.png"
+                    src="/img/icon-exit.svg"
                     alt="Botón para cerrar sesión de usuario"
                     width="24"
                     height="24"
@@ -39,7 +39,7 @@ const NavigationBar = (): React.ReactElement => {
             <li className="navigation-bar__element">
               <NavLink to="/añadir" className="navigation-bar__link">
                 <img
-                  src="/img/icon-add.png"
+                  src="/img/icon-add.svg"
                   alt="Link para acceder a la página añadir un espacio"
                   width="24"
                   height="24"
@@ -51,7 +51,7 @@ const NavigationBar = (): React.ReactElement => {
             <li className="navigation-bar__element">
               <NavLink to="/espacios" className="navigation-bar__link">
                 <img
-                  src="/img/icon-list.png"
+                  src="/img/icon-list.svg"
                   alt="Link para acceder a la página de listado"
                   width="24"
                   height="24"
