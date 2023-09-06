@@ -30,7 +30,9 @@ const NavigationBar = (): React.ReactElement => {
                     height="24"
                     className="navigation-bar__exit-logo"
                   />
-                  <span>Salir</span>
+                  <span aria-label="Click para salir de la aplicación">
+                    Salir
+                  </span>
                 </>
               </Button>
             </li>
@@ -60,9 +62,7 @@ const NavigationBar = (): React.ReactElement => {
             </li>
           </ul>
         </nav>
-      ) : (
-        ""
-      )}
+      ) : null}
     </>
   );
 };

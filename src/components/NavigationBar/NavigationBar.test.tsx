@@ -1,6 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
+import auth, { AuthStateHook } from "react-firebase-hooks/auth";
+import { User } from "firebase/auth";
+
+vi.mock("firebase/auth");
+
+const user: Partial<User> = { displayName: "Emilio" };
+
+const authStateHookMock: Partial<AuthStateHook> = [user as User];
+auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
 describe("Given a NavigationBar component", () => {
   describe("When is rendered", () => {
