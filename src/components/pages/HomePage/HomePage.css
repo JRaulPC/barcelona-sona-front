@@ -1,0 +1,36 @@
+.homepage__elements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+}
+.homepage__header {
+  width: 288px;
+  color: #fff;
+  text-align: center;
+  font-family: roboto, system-ui;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.login-button {
+  width: 200px;
+  height: 40px;
+  display: flex;
+  display: inline-flex;
+  padding: 7px 10px;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 38px;
+  border: 1px solid #fff;
+}
+
+.login-button__text {
+  line-height: 18px;
+  font-size: 1.1rem;
+  color: white;
+}
