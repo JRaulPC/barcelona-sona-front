@@ -1,7 +1,17 @@
 import "./HomePage.css";
-import Button from "../../Button/Button";
+import Button from "../../components/Button/Button";
+import { auth, gitHubAuthProvider } from "../../firebase";
+import { signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = (): React.ReactElement => {
+  const navigate = useNavigate();
+
+  const login = async () => {
+    await signInWithPopup(auth, gitHubAuthProvider);
+    navigate("/lista");
+  };
+
   return (
     <div className="homepage">
       <h2 className="homepage__header">
@@ -10,12 +20,12 @@ const HomePage = (): React.ReactElement => {
       <div className="homepage__elements">
         <img
           src="/img/home-page-drawing.png"
-          alt="Botón para cerrar sesión de usuario"
+          alt="Fondo de la pantalla pagina de inicio"
           width="274"
           height="247"
           className="homepage__image"
         />
-        <Button className="login-button" actionOnClick={() => {}}>
+        <Button className="login-button" actionOnClick={login}>
           <>
             <img
               src="/img/github.png"
@@ -24,7 +34,12 @@ const HomePage = (): React.ReactElement => {
               height="28"
               className="login-button__image"
             />
-            <span className="login-button__text">Entra con GitHub</span>
+            <span
+              aria-label="Botón para iniciar sesión de usuario"
+              className="login-button__text"
+            >
+              Entra con GitHub
+            </span>
           </>
         </Button>
       </div>
