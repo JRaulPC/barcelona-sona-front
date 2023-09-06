@@ -1,9 +1,11 @@
 .header {
-  margin-top: 41px;
+  height: 105px;
+  width: 100vw;
   display: flex;
   gap: 41px;
   align-items: center;
   justify-content: center;
+  background: var(--header-bg-color);
 }
 
 .header__title {
