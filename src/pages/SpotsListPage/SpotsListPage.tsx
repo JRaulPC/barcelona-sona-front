@@ -1,3 +1,5 @@
+import "./SpotsListPage.css";
+
 const SpotsListPage = (): React.ReactElement => {
   return (
     <section className="spots-page">

@@ -1,0 +1,14 @@
+.spots-page {
+  padding: 16px;
+  display: flex;
+  margin-left: 32px;
+}
+
+.spots-page__heading {
+  font-family: var(--main-font);
+  color: var(--main-font-color);
+  letter-spacing: -1.1px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 36px;
+}

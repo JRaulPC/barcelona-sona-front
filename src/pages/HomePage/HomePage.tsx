@@ -9,7 +9,7 @@ const HomePage = (): React.ReactElement => {
 
   const login = async () => {
     await signInWithPopup(auth, gitHubAuthProvider);
-    navigate("/lista");
+    navigate("/espacios");
   };
 
   return (
