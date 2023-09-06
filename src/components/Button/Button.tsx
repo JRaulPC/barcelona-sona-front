@@ -1,9 +1,8 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-interface ButtonProps {
+interface ButtonProps extends PropsWithChildren {
   className: string;
   actionOnClick: () => void;
-  children: React.ReactElement;
 }
 
 const Button = ({
@@ -11,7 +10,7 @@ const Button = ({
   actionOnClick,
   children,
 }: ButtonProps): React.ReactElement => {
-  const buttonClass = className ? `button ${className}` : "button";
+  const buttonClass = `button ${className}`;
 
   return (
     <button type="button" className={buttonClass} onClick={actionOnClick}>
