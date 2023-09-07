@@ -3,6 +3,7 @@ import { useAppDispatch } from "../../store";
 import "./SpotsListPage.css";
 import { loadSpotsActionCreator } from "../../store/spots/spotsSlice";
 import { spotsMock } from "../../mocks/mocks";
+import SpotsList from "../../components/SpotsList/SpotsList";
 
 const SpotsListPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
@@ -14,6 +15,7 @@ const SpotsListPage = (): React.ReactElement => {
   return (
     <section className="spots-page">
       <h2 className="spots-page__heading">Espacios</h2>
+      <SpotsList />
     </section>
   );
 };
