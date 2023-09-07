@@ -5,8 +5,14 @@ import paths from "../../paths/paths";
 import HomePage from "../../pages/HomePage/HomePage";
 import SpotsListPage from "../../pages/SpotsListPage/SpotsListPage";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase";
+import React from "react";
+import "./App.css";
 
 const App = (): React.ReactElement => {
+  const [user] = useAuthState(auth);
+
   return (
     <div className="container">
       <Header />
@@ -22,7 +28,7 @@ const App = (): React.ReactElement => {
           }
         />
       </Routes>
-      <NavigationBar />
+      {user && <NavigationBar />}
     </div>
   );
 };

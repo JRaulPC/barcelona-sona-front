@@ -6,17 +6,16 @@
   justify-content: space-evenly;
   padding: 12px;
   position: fixed;
-  left: 0;
   background-color: var(--nav-bg-color);
   bottom: 0;
   font-family: roboto, system-ui;
 }
 
-.navigation-bar__elements {
+.navigation-bar__links {
   display: flex;
   align-items: center;
   color: var(--secondary-font-color);
-  gap: 8px;
+  gap: 18px;
 }
 
 .navigation-bar__element {
@@ -48,7 +47,7 @@
   border-radius: 16px;
 }
 
-.exit-button {
+.navigation-bar__exit-button {
   color: var(--secondary-font-color);
   position: absolute;
   top: 16px;

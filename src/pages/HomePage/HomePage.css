@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 24px;
 }
 
 .homepage__elements {
@@ -12,22 +13,22 @@
   gap: 46px;
 }
 
-.homepage__header {
+.homepage__title {
   margin: 0;
-  padding: 12px;
-  width: 288px;
+  padding: 16px;
+  max-width: 320px;
+  overflow-wrap: break-word;
   color: #fff;
   text-align: center;
   font-family: roboto, system-ui;
   font-size: 1rem;
-  font-weight: 400;
 }
 
 .login-button {
   width: 200px;
   height: 40px;
   display: flex;
-  padding: 7px 10px;
+  padding: 24px 10px;
   align-items: center;
   gap: 6px;
   justify-content: center;

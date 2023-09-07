@@ -28,7 +28,9 @@ describe("Given an App component", () => {
 
       render(
         <BrowserRouter>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
         </BrowserRouter>,
       );
 
@@ -43,12 +45,17 @@ describe("Given an App component", () => {
       const loginButtonLabel = "Botón para iniciar sesión de usuario";
       const newExpectedHeading = "Espacios";
 
+      const authStateHookMock: Partial<AuthStateHook> = [null as null];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      const homeRoute = "/home";
+
       render(
-        <BrowserRouter>
+        <MemoryRouter initialEntries={[homeRoute]}>
           <Provider store={store}>
             <App />
           </Provider>
-        </BrowserRouter>,
+        </MemoryRouter>,
       );
 
       const loginButton = screen.getByLabelText(loginButtonLabel);
@@ -69,6 +76,12 @@ describe("Given an App component", () => {
       const exitButtonLabel = "Click para salir de la aplicación";
       const expectedHeading =
         "Consulta que espacios tienen su acústica registrada o añade el tuyo.";
+
+      const user: Partial<User> = { displayName: "Emilio" };
+
+      const authStateHookMock: Partial<AuthStateHook> = [user as User];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
       render(
         <BrowserRouter>
           <Provider store={store}>
@@ -96,7 +109,9 @@ describe("Given an App component", () => {
 
       render(
         <MemoryRouter initialEntries={[listRoute]}>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
         </MemoryRouter>,
       );
 

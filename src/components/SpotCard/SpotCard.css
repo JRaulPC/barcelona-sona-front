@@ -1,4 +1,5 @@
 .spot-card {
+  width: 288px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

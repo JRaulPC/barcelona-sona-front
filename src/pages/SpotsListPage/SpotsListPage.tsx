@@ -13,10 +13,10 @@ const SpotsListPage = (): React.ReactElement => {
   }, [dispatch]);
 
   return (
-    <section className="spots-page">
-      <h2 className="spots-page__heading">Espacios</h2>
+    <main className="spots-page">
+      <h2 className="spots-page__title">Espacios</h2>
       <SpotsList />
-    </section>
+    </main>
   );
 };
 
