@@ -4,7 +4,7 @@
   flex-direction: column;
 }
 
-.spots-page__heading {
+.spots-page__title {
   font-family: var(--main-font);
   color: var(--main-font-color);
   letter-spacing: -1.1px;
