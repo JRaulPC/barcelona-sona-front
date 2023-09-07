@@ -4,6 +4,9 @@ import userEvent from "@testing-library/user-event";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 import { User } from "firebase/auth";
+import { setupStore } from "../../store";
+import { spotsMock } from "../../mocks/mocks";
+import { Provider } from "react-redux";
 
 vi.mock("firebase/auth");
 
@@ -11,6 +14,12 @@ const user: Partial<User> = { displayName: "Emilio" };
 
 const authStateHookMock: Partial<AuthStateHook> = [user as User];
 auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+const store = setupStore({
+  spotsStore: {
+    spots: spotsMock,
+  },
+});
 
 describe("Given an App component", () => {
   describe("When it is rendered", () => {
@@ -36,7 +45,9 @@ describe("Given an App component", () => {
 
       render(
         <BrowserRouter>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
         </BrowserRouter>,
       );
 
@@ -60,7 +71,9 @@ describe("Given an App component", () => {
         "Consulta que espacios tienen su acústica registrada o añade el tuyo.";
       render(
         <BrowserRouter>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
         </BrowserRouter>,
       );
 
