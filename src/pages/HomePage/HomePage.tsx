@@ -22,7 +22,7 @@ const HomePage = (): React.ReactElement => {
   return (
     <main className="homepage">
       <h2 className="homepage__title">
-        Consulta que espacios tienen su acústica registrada o añade el tuyo
+        Consulta que espacios tienen su acústica registrada o añade el tuyo.
       </h2>
       <div className="homepage__elements">
         <img
