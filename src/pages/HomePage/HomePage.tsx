@@ -2,9 +2,12 @@ import "./HomePage.css";
 import Button from "../../components/Button/Button";
 import { auth, gitHubAuthProvider } from "../../firebase";
 import { signInWithPopup } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import paths from "../../paths/paths";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const HomePage = (): React.ReactElement => {
+  const [user] = useAuthState(auth);
   const navigate = useNavigate();
 
   const login = async () => {
@@ -12,10 +15,14 @@ const HomePage = (): React.ReactElement => {
     navigate("/espacios");
   };
 
+  if (user) {
+    return <Navigate to={paths.spots} />;
+  }
+
   return (
-    <div className="homepage">
-      <h2 className="homepage__header">
-        Consulta que espacios tienen su acústica registrada o añade el tuyo.
+    <main className="homepage">
+      <h2 className="homepage__title">
+        Consulta que espacios tienen su acústica registrada o añade el tuyo
       </h2>
       <div className="homepage__elements">
         <img
@@ -43,7 +50,7 @@ const HomePage = (): React.ReactElement => {
           </>
         </Button>
       </div>
-    </div>
+    </main>
   );
 };
 
