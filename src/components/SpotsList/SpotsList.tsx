@@ -1,6 +1,11 @@
 import "./SpotsList.css";
 import { useAppSelector } from "../../store";
 import SpotCard from "../SpotCard/SpotCard";
+import React from "react";
+
+export const LazySpotsListPage = React.lazy(
+  () => import("../../pages/SpotsListPage/SpotsListPage"),
+);
 
 const SpotsList = (): React.ReactElement => {
   const spots = useAppSelector(({ spotsStore: { spots } }) => spots);

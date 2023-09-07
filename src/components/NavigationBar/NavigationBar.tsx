@@ -4,6 +4,11 @@ import Button from "../Button/Button";
 
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
+import React from "react";
+
+export const LazyNavigationBar = React.lazy(
+  () => import("../NavigationBar/NavigationBar"),
+);
 
 const NavigationBar = (): React.ReactElement => {
   const navigate = useNavigate();
@@ -29,7 +34,7 @@ const NavigationBar = (): React.ReactElement => {
                 height="24"
                 className="navigation-bar__exit-logo"
               />
-              <span aria-label="Click para salir de la aplicación">Salir</span>
+              Salir
             </>
           </Button>
         </li>
