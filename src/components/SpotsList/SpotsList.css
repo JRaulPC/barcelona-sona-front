@@ -1,6 +1,6 @@
 .spots-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
   color: white;
+  gap: 20px;
 }

@@ -1,0 +1,46 @@
+.spot-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--card-bg);
+}
+
+.spot-card__info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  gap: 16px;
+}
+
+.spot-card__heading {
+  padding-top: 16px;
+  margin: 0;
+  color: var(--main-font-color);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+.spot-card__properties {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--text-properties-color);
+}
+
+.spot-card__checkbox {
+  display: flex;
+  justify-content: space-between;
+  height: 48px;
+  width: 256px;
+  padding: 16px;
+  background-color: var(--main-checkbox-color);
+  border-radius: 8px;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 24px; /* 171.429% */
+  letter-spacing: 0.5px;
+}

@@ -1,5 +1,6 @@
 import "./SpotsList.css";
 import { useAppSelector } from "../../store";
+import SpotCard from "../SpotCard/SpotCard";
 
 const SpotsList = (): React.ReactElement => {
   const spots = useAppSelector(({ spotsStore: { spots } }) => spots);
@@ -8,7 +9,7 @@ const SpotsList = (): React.ReactElement => {
     <ul className="spots-list">
       {spots.map((spot) => (
         <li key={spot.id} className="spots-list__spot">
-          <h2>{spot.name}</h2>
+          <SpotCard spot={spot} />
         </li>
       ))}
     </ul>
