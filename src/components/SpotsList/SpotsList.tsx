@@ -8,7 +8,7 @@ const SpotsList = (): React.ReactElement => {
     <ul className="spots-list">
       {spots.map((spot) => (
         <li key={spot.id} className="spots-list__spot">
-          {spot.name}
+          <h2>{spot.name}</h2>
         </li>
       ))}
     </ul>
