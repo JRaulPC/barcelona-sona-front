@@ -11,7 +11,7 @@ export const spotsMock: Spot[] = [
     visited: false,
   },
   {
-    id: "1",
+    id: "2",
     name: "Palau de la música",
     imageUrl:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Palau_de_la_M%C3%BAsica_Catalana%2C_the_Catalan_Concert_Hall.jpg/800px-Palau_de_la_M%C3%BAsica_Catalana%2C_the_Catalan_Concert_Hall.jpg?20120927183654",

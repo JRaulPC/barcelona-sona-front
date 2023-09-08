@@ -31,6 +31,7 @@ const HomePage = (): React.ReactElement => {
           width="274"
           height="247"
           className="homepage__image"
+          loading="eager"
         />
         <Button className="login-button" actionOnClick={login}>
           <>
@@ -40,6 +41,7 @@ const HomePage = (): React.ReactElement => {
               width="28"
               height="28"
               className="login-button__image"
+              loading="eager"
             />
             <span
               aria-label="Botón para iniciar sesión de usuario"

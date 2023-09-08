@@ -5,7 +5,6 @@
   height: 80px;
   justify-content: space-evenly;
   padding: 12px;
-  position: fixed;
   background-color: var(--nav-bg-color);
   bottom: 0;
   font-family: roboto, system-ui;
@@ -50,7 +49,6 @@
 .navigation-bar__exit-button {
   color: var(--secondary-font-color);
   position: absolute;
-  top: 16px;
   width: 96px;
   height: 52px;
   display: flex;

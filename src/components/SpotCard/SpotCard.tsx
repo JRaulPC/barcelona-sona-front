@@ -25,7 +25,7 @@ const SpotCard = ({
         </ul>
         <div className="spot-card__checkbox">
           <label htmlFor="visited">Lo has visitado?</label>
-          <input type="checkbox" name="visited" id="" />
+          <input type="checkbox" name="visited" id="visited" />
         </div>
       </div>
     </article>
