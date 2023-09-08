@@ -7,17 +7,11 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import React, { Suspense } from "react";
 import "./App.css";
+import { LazySpotsListPage } from "../SpotsList/SpotsList";
+import { LazyNavigationBar } from "../NavigationBar/NavigationBar";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
-
-  const LazySpotsListPage = React.lazy(
-    () => import("../../pages/SpotsListPage/SpotsListPage"),
-  );
-
-  const LazyNavigationBar = React.lazy(
-    () => import("../NavigationBar/NavigationBar"),
-  );
 
   return (
     <div className="container">
@@ -30,7 +24,7 @@ const App = (): React.ReactElement => {
           path={paths.spots}
           element={
             <ProtectedRoute>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense>
                 <LazySpotsListPage />
               </Suspense>
             </ProtectedRoute>
@@ -38,7 +32,7 @@ const App = (): React.ReactElement => {
         />
       </Routes>
       {user && (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense>
           <LazyNavigationBar />
         </Suspense>
       )}

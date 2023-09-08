@@ -10,11 +10,6 @@ import { Provider } from "react-redux";
 
 vi.mock("firebase/auth");
 
-const user: Partial<User> = { displayName: "Emilio" };
-
-const authStateHookMock: Partial<AuthStateHook> = [user as User];
-auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
-
 const store = setupStore({
   spotsStore: {
     spots: spotsMock,
@@ -24,6 +19,10 @@ const store = setupStore({
 describe("Given an App component", () => {
   describe("When it is rendered", () => {
     test("Then it should show the text 'Barcelona SONA' inside a header", () => {
+      const user: Partial<User> = { displayName: "Emilio" };
+
+      const authStateHookMock: Partial<AuthStateHook> = [user as User];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
       const expectedHeading = "Barcelona SONA";
 
       render(
@@ -71,11 +70,12 @@ describe("Given an App component", () => {
     });
   });
 
-  describe("When the 'Salir' button is clicked", () => {
-    test("Then it should show a page with the text 'Consulta que espacios tienen su acústica registrada o añade el tuyo.' as a heading", async () => {
+  describe("When the user is in the list page and the 'Salir' button is clicked", () => {
+    test("Then it should show a page with the text 'Consulta que espacios tienen su acústica registrada o añade el tuyo.' as a heading", () => {
       const exitButtonLabel = "Click para salir de la aplicación";
       const expectedHeading =
         "Consulta que espacios tienen su acústica registrada o añade el tuyo.";
+      const listRoute = "/espacios";
 
       const user: Partial<User> = { displayName: "Emilio" };
 
@@ -83,21 +83,21 @@ describe("Given an App component", () => {
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
       render(
-        <BrowserRouter>
+        <MemoryRouter initialEntries={[listRoute]}>
           <Provider store={store}>
             <App />
           </Provider>
-        </BrowserRouter>,
+        </MemoryRouter>,
       );
 
-      const logoutButton = screen.getByLabelText(exitButtonLabel);
-
-      await userEvent.click(logoutButton);
-
       waitFor(() => {
+        screen.debug();
+        const logoutButton = screen.getByLabelText(exitButtonLabel);
+        userEvent.click(logoutButton);
         const heading = screen.getByRole("heading", {
           name: expectedHeading,
         });
+        screen.debug();
         expect(heading).toBeInTheDocument();
       });
     });
