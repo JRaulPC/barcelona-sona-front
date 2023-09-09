@@ -21,19 +21,21 @@ const HomePage = (): React.ReactElement => {
 
   return (
     <main className="homepage">
-      <h2 className="homepage__title">
-        Consulta que espacios tienen su acústica registrada o añade el tuyo.
-      </h2>
+      <div className="homepage__title">
+        <h2 className="homepage__title-text">
+          Consulta que espacios tienen su acústica registrada o añade el tuyo.
+        </h2>
+      </div>
       <div className="homepage__elements">
         <img
           src="/img/home-page-drawing.svg"
-          alt="Fondo de la pantalla pagina de inicio"
+          alt="Representación abstracta del efecto sonoro doppler"
           width="274"
           height="247"
           className="homepage__image"
           loading="eager"
         />
-        <Button className="login-button" actionOnClick={login}>
+        <Button className="login" actionOnClick={login}>
           <>
             <img
               src="/img/github.svg"
@@ -43,12 +45,7 @@ const HomePage = (): React.ReactElement => {
               className="login-button__image"
               loading="eager"
             />
-            <span
-              aria-label="Botón para iniciar sesión de usuario"
-              className="login-button__text"
-            >
-              Entra con GitHub
-            </span>
+            <span className="login-button__text">Entra con GitHub</span>
           </>
         </Button>
       </div>

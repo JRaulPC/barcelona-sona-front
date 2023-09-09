@@ -20,7 +20,7 @@ describe("Given a HomePage page", () => {
     });
 
     test("Then it should show a button with the text 'Entra con GitHub'", () => {
-      const buttonText = "Botón para iniciar sesión de usuario";
+      const buttonText = "Entra con GitHub";
 
       render(
         <BrowserRouter>
@@ -28,7 +28,7 @@ describe("Given a HomePage page", () => {
         </BrowserRouter>,
       );
 
-      const button = screen.getByLabelText(buttonText);
+      const button = screen.getByText(buttonText);
 
       expect(button).toBeInTheDocument();
     });

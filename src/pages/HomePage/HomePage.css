@@ -18,13 +18,16 @@
   padding: 16px;
   max-width: 320px;
   overflow-wrap: break-word;
-  color: #fff;
   text-align: center;
-  font-family: roboto, system-ui;
-  font-size: 1rem;
 }
 
-.login-button {
+.homepage__title-text {
+  font-family: roboto, system-ui;
+  font-size: 1rem;
+  color: var(--main-font-color);
+}
+
+.login {
   width: 200px;
   height: 40px;
   display: flex;
