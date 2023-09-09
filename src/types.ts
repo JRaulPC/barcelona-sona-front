@@ -3,8 +3,8 @@ export interface ApiSpot {
   name: string;
   imageUrl: string;
   spotUse: string;
-  opening: number;
-  visited: boolean;
+  openingYear: number;
+  isVisited: boolean;
 }
 
 export interface Spot extends Omit<ApiSpot, "_id"> {
@@ -12,6 +12,6 @@ export interface Spot extends Omit<ApiSpot, "_id"> {
   name: string;
   imageUrl: string;
   spotUse: string;
-  opening: number;
-  visited: boolean;
+  openingYear: number;
+  isVisited: boolean;
 }

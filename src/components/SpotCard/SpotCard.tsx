@@ -1,12 +1,12 @@
 import { Spot } from "../../types";
 import "./SpotCard.css";
-export interface SpotCardProops {
+export interface SpotCardProps {
   spot: Partial<Spot>;
 }
 
 const SpotCard = ({
-  spot: { imageUrl, name, opening, spotUse },
-}: SpotCardProops): React.ReactElement => {
+  spot: { imageUrl, name, openingYear, spotUse },
+}: SpotCardProps): React.ReactElement => {
   return (
     <article className="spot-card">
       <img
@@ -18,10 +18,10 @@ const SpotCard = ({
         loading="lazy"
       />
       <div className="spot-card__info">
-        <h1 className="spot-card__heading">{name}</h1>
+        <h2 className="spot-card__heading">{name}</h2>
         <ul className="spot-card__properties">
           <li>{spotUse}</li>
-          <li>{opening}</li>
+          <li>{openingYear}</li>
         </ul>
         <div className="spot-card__checkbox">
           <label htmlFor="visited">Lo has visitado?</label>

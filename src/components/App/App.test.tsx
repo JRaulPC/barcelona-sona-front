@@ -41,7 +41,7 @@ describe("Given an App component", () => {
 
   describe("When the 'Entra con GitHub' button is clicked", () => {
     test("Then it should show a page with the header 'Espacios'", async () => {
-      const loginButtonLabel = "Botón para iniciar sesión de usuario";
+      const loginButtonText = "Entra con GitHub";
       const newExpectedHeading = "Espacios";
 
       const authStateHookMock: Partial<AuthStateHook> = [null as null];
@@ -57,7 +57,7 @@ describe("Given an App component", () => {
         </MemoryRouter>,
       );
 
-      const loginButton = screen.getByLabelText(loginButtonLabel);
+      const loginButton = screen.getByText(loginButtonText);
 
       await userEvent.click(loginButton);
 
@@ -71,8 +71,8 @@ describe("Given an App component", () => {
   });
 
   describe("When the user is in the list page and the 'Salir' button is clicked", () => {
-    test("Then it should show a page with the text 'Consulta que espacios tienen su acústica registrada o añade el tuyo.' as a heading", () => {
-      const exitButtonLabel = "Click para salir de la aplicación";
+    test("Then it should show a page with the text 'Consulta que espacios tienen su acústica registrada o añade el tuyo.' as a heading", async () => {
+      const exitButton = "Click para salir de la aplicación";
       const expectedHeading =
         "Consulta que espacios tienen su acústica registrada o añade el tuyo.";
       const listRoute = "/espacios";
@@ -92,7 +92,7 @@ describe("Given an App component", () => {
 
       waitFor(() => {
         screen.debug();
-        const logoutButton = screen.getByLabelText(exitButtonLabel);
+        const logoutButton = screen.getByText(exitButton);
         userEvent.click(logoutButton);
         const heading = screen.getByRole("heading", {
           name: expectedHeading,
