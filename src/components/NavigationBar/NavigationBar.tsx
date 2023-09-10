@@ -1,7 +1,6 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./NavigationBar.css";
 import Button from "../Button/Button";
-
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import React from "react";
@@ -11,11 +10,8 @@ export const LazyNavigationBar = React.lazy(
 );
 
 const NavigationBar = (): React.ReactElement => {
-  const navigate = useNavigate();
-
   const logout = async () => {
     await signOut(auth);
-    navigate("/home");
   };
 
   return (

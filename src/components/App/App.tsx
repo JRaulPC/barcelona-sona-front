@@ -31,6 +31,7 @@ const App = (): React.ReactElement => {
           }
         />
       </Routes>
+
       {user && (
         <Suspense>
           <LazyNavigationBar />
