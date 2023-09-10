@@ -1,6 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import HomePage from "./HomePage";
 import { BrowserRouter } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
+import { Auth, signInWithPopup } from "firebase/auth";
+
+vi.mock("firebase/auth", async () => {
+  const actual: Auth = await vi.importActual("firebase/auth");
+  return {
+    ...actual,
+    signInWithPopup: vi.fn(),
+  };
+});
 
 describe("Given a HomePage page", () => {
   describe("When is rendered", () => {
@@ -31,6 +41,26 @@ describe("Given a HomePage page", () => {
       const button = screen.getByText(buttonText);
 
       expect(button).toBeInTheDocument();
+    });
+  });
+
+  describe("When the 'Entra con GitHub' button is clicked", () => {
+    test("Then the sigInWithPopup function is called", async () => {
+      const loginButtonText = /Entra con GitHub/i;
+
+      render(
+        <BrowserRouter>
+          <HomePage />
+        </BrowserRouter>,
+      );
+
+      const loginButton = await screen.getByRole("button", {
+        name: loginButtonText,
+      });
+
+      await userEvent.click(loginButton);
+
+      expect(signInWithPopup).toHaveBeenCalled();
     });
   });
 });

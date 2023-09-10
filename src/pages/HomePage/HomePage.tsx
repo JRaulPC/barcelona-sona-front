@@ -2,17 +2,15 @@ import "./HomePage.css";
 import Button from "../../components/Button/Button";
 import { auth, gitHubAuthProvider } from "../../firebase";
 import { signInWithPopup } from "firebase/auth";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import paths from "../../paths/paths";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const HomePage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
-  const navigate = useNavigate();
 
   const login = async () => {
     await signInWithPopup(auth, gitHubAuthProvider);
-    navigate("/espacios");
   };
 
   if (user) {
@@ -45,7 +43,7 @@ const HomePage = (): React.ReactElement => {
               className="login-button__image"
               loading="eager"
             />
-            <span className="login-button__text">Entra con GitHub</span>
+            Entra con GitHub
           </>
         </Button>
       </div>
