@@ -23,6 +23,7 @@
   font-weight: 400;
   letter-spacing: 0.5px;
 }
+
 .spot-card__properties {
   display: flex;
   flex-direction: column;
