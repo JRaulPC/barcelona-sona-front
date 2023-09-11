@@ -3,6 +3,7 @@ import { UiState } from "./types";
 
 export const initialUiState: UiState = {
   isLoading: false,
+  isError: false,
 };
 
 const uiSlice = createSlice({
@@ -17,6 +18,14 @@ const uiSlice = createSlice({
       ...currentUiState,
       isLoading: false,
     }),
+    showError: (currentUiState): UiState => ({
+      ...currentUiState,
+      isError: true,
+    }),
+    hideError: (currentUiState): UiState => ({
+      ...currentUiState,
+      isError: false,
+    }),
   },
 });
 
@@ -25,4 +34,6 @@ export const uiReducer = uiSlice.reducer;
 export const {
   startLoading: startLoadingActionCreator,
   stopLoading: stopLoadingActionCreator,
+  showError: showErrorActionCreator,
+  hideError: hideErrorActionCreator,
 } = uiSlice.actions;
