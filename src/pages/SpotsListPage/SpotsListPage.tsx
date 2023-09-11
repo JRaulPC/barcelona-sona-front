@@ -2,15 +2,19 @@ import { useEffect } from "react";
 import { useAppDispatch } from "../../store";
 import "./SpotsListPage.css";
 import { loadSpotsActionCreator } from "../../store/spots/spotsSlice";
-import { spotsMock } from "../../mocks/mocks";
 import SpotsList from "../../components/SpotsList/SpotsList";
+import useSpotsApi from "../../hooks/useSpotsApi";
 
 const SpotsListPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
+  const { getSpots } = useSpotsApi();
 
   useEffect(() => {
-    dispatch(loadSpotsActionCreator(spotsMock));
-  }, [dispatch]);
+    (async () => {
+      const spots = await getSpots();
+      dispatch(loadSpotsActionCreator(spots));
+    })();
+  }, [dispatch, getSpots]);
 
   return (
     <main className="spots-page">
