@@ -1,3 +1,4 @@
 export interface UiState {
-  isLoading: boolean;
+  isLoading?: boolean;
+  isError?: boolean;
 }
