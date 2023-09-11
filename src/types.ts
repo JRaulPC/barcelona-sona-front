@@ -7,6 +7,10 @@ export interface ApiSpot {
   isVisited: boolean;
 }
 
+export interface ApiSpots {
+  spots: ApiSpot[];
+}
+
 export interface Spot extends Omit<ApiSpot, "_id"> {
   id: string;
   name: string;

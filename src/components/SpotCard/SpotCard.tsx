@@ -24,8 +24,8 @@ const SpotCard = ({
           <li>{openingYear}</li>
         </ul>
         <div className="spot-card__checkbox">
-          <label htmlFor="visited">Lo has visitado?</label>
-          <input type="checkbox" name="visited" id="visited" />
+          <label htmlFor={`visited ${name}`}>Lo has visitado?</label>
+          <input type="checkbox" id={`visited ${name}`} />
         </div>
       </div>
     </article>
