@@ -37,9 +37,6 @@
   justify-content: center;
   border-radius: 38px;
   border: 1px solid #fff;
-}
-
-.login-button__text {
   line-height: 18px;
   font-size: 1.1rem;
   color: white;

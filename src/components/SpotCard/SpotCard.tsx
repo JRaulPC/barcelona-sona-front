@@ -5,7 +5,7 @@ export interface SpotCardProps {
 }
 
 const SpotCard = ({
-  spot: { imageUrl, name, openingYear, spotUse },
+  spot: { imageUrl, name, openingYear, spotUse, id },
 }: SpotCardProps): React.ReactElement => {
   return (
     <article className="spot-card">
@@ -24,8 +24,8 @@ const SpotCard = ({
           <li>{openingYear}</li>
         </ul>
         <div className="spot-card__checkbox">
-          <label htmlFor="visited">Lo has visitado?</label>
-          <input type="checkbox" name="visited" id="visited" />
+          <label htmlFor={`visited ${id}`}>Lo has visitado?</label>
+          <input type="checkbox" name="visited" id={`visited ${id}`} />
         </div>
       </div>
     </article>
