@@ -29,7 +29,7 @@ const SpotCard = ({
           <label htmlFor={`visited${name?.replace(/\s/g, "")}`}>
             Lo has visitado?
           </label>
-          <input type="checkbox" id={`visited ${name}`} />
+          <input type="checkbox" id={`visited${name?.replace(/\s/g, "")}`} />
         </div>
       </div>
     </article>

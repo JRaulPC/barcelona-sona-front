@@ -10,18 +10,18 @@ import "./App.css";
 import { LazySpotsListPage } from "../SpotsList/SpotsList";
 import { LazyNavigationBar } from "../NavigationBar/NavigationBar";
 import { useAppSelector } from "../../store";
-import ErrorFeedback from "../ErrorFeedback/ErrorFeedback";
+import Feedback from "../Feedback/Feedback";
 import Loader from "../Loader/Loader";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
-  const isError = useAppSelector((state) => state.uiStore.isError);
   const isLoading = useAppSelector((state) => state.uiStore.isLoading);
 
   return (
     <>
       {isLoading && <Loader />}
-      {isError && <ErrorFeedback />}
+      <Feedback />
       <div className="container">
         <Header />
         <Routes>

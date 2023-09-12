@@ -3,13 +3,21 @@ import { ApiSpots, Spot } from "../types";
 import axios from "axios";
 import { useIdToken } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
-
+import { useAppDispatch } from "../store";
+import {
+  startLoadingActionCreator,
+  stopLoadingActionCreator,
+} from "../store/ui/uiSlice";
+import { showError } from "../components/Feedback/toast";
 export const apiUrl = import.meta.env.VITE_API_URL;
 
 const useSpotsApi = () => {
   const [user] = useIdToken(auth);
+  const dispatch = useAppDispatch();
 
   const getSpots = useCallback(async (): Promise<Spot[]> => {
+    dispatch(startLoadingActionCreator());
+
     try {
       const token = await user?.getIdToken();
       const config = {
@@ -36,11 +44,14 @@ const useSpotsApi = () => {
         }),
       );
 
+      dispatch(stopLoadingActionCreator());
       return spots;
     } catch {
+      showError();
+      dispatch(stopLoadingActionCreator());
       throw new Error("Can't get spots right now");
     }
-  }, [user]);
+  }, [dispatch, user]);
 
   return { getSpots };
 };
