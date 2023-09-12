@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import Page404 from "./Page404";
+
 import { BrowserRouter } from "react-router-dom";
+import Page404 from "./Page404";
 
 describe("Given a Page 404", () => {
   describe("When is rendered", () => {
