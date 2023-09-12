@@ -26,9 +26,9 @@ describe("Given a ui reducer", () => {
         isLoading: true,
       };
 
-      const startLoadingAction = stopLoadingActionCreator();
+      const stopLoadingAction = stopLoadingActionCreator();
 
-      const newUiState = uiReducer(currentUiState, startLoadingAction);
+      const newUiState = uiReducer(currentUiState, stopLoadingAction);
 
       expect(newUiState).toHaveProperty("isLoading", false);
     });
