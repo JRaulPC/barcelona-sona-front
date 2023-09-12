@@ -12,9 +12,9 @@ const SpotsList = (): React.ReactElement => {
 
   return (
     <ul className="spots-list">
-      {spots.map((spot) => (
+      {spots.map((spot, listPosition) => (
         <li key={spot.id} className="spots-list__spot">
-          <SpotCard spot={spot} />
+          <SpotCard spot={spot} listPosition={listPosition} />
         </li>
       ))}
     </ul>
