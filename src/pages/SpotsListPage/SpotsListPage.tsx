@@ -4,17 +4,22 @@ import "./SpotsListPage.css";
 import { loadSpotsActionCreator } from "../../store/spots/spotsSlice";
 import SpotsList from "../../components/SpotsList/SpotsList";
 import useSpotsApi from "../../hooks/useSpotsApi";
+import { auth } from "../../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const SpotsListPage = (): React.ReactElement => {
+  const [user] = useAuthState(auth);
   const dispatch = useAppDispatch();
   const { getSpots } = useSpotsApi();
 
   useEffect(() => {
-    (async () => {
-      const spots = await getSpots();
-      dispatch(loadSpotsActionCreator(spots));
-    })();
-  }, [dispatch, getSpots]);
+    if (user) {
+      (async () => {
+        const spots = await getSpots();
+        dispatch(loadSpotsActionCreator(spots));
+      })();
+    }
+  }, [dispatch, getSpots, user]);
 
   return (
     <main className="spots-page">
