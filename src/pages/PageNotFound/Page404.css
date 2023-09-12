@@ -4,6 +4,7 @@
   align-items: center;
   gap: 36px;
   color: var(--main-font-color);
+  font-family: var(--text-font), system-ui;
   padding: 22px;
 }
 
@@ -15,7 +16,6 @@
 
 .page-404__title {
   text-align: center;
-  font-family: Roboto;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
@@ -24,11 +24,8 @@
 }
 
 .page-404__text {
-  font-family: var(--text-font);
-  font-weight: 400;
+  font-weight: 00;
   font-size: 1rem;
-  line-height: normal;
-  letter-spacing: 0.5px;
   width: 227px;
   text-align: center;
 }

@@ -2,6 +2,9 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import paths from "../../paths/paths";
 import "./Page404.css";
+import { lazy } from "react";
+
+export const LazyPage404 = lazy(() => import("./Page404"));
 
 const Page404 = (): React.ReactElement => {
   const navigate = useNavigate();

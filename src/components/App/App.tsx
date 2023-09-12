@@ -13,7 +13,7 @@ import { useAppSelector } from "../../store";
 import Feedback from "../Feedback/Feedback";
 import Loader from "../Loader/Loader";
 import "react-toastify/dist/ReactToastify.css";
-import Page404 from "../../pages/PageNotFound/Page404";
+import Page404, { LazyPage404 } from "../../pages/PageNotFound/Page404";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -29,6 +29,7 @@ const App = (): React.ReactElement => {
           <Route path="/" element={<Navigate to={paths.homePage} />} />
           <Route path={paths.homePage} element={<HomePage />} />
           <Route path={paths.notFound} element={<Page404 />} />
+
           <Route
             path={paths.spots}
             element={
@@ -37,6 +38,15 @@ const App = (): React.ReactElement => {
                   <LazySpotsListPage />
                 </Suspense>
               </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path={paths.notFound}
+            element={
+              <Suspense>
+                <LazyPage404 />
+              </Suspense>
             }
           />
         </Routes>
