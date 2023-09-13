@@ -7,7 +7,7 @@
   padding: 12px;
   background-color: var(--nav-bg-color);
   bottom: 0;
-  position: relative;
+  position: sticky;
   font-family: var(--text-font), system-ui;
 }
 

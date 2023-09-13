@@ -1,11 +1,15 @@
-import { useEffect } from "react";
-import { useAppDispatch } from "../../store";
-import "./SpotsListPage.css";
-import { loadSpotsActionCreator } from "../../store/spots/spotsSlice";
-import SpotsList from "../../components/SpotsList/SpotsList";
-import useSpotsApi from "../../hooks/useSpotsApi";
-import { auth } from "../../firebase";
+import { lazy, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import SpotsList from "../../components/SpotsList/SpotsList";
+import { auth } from "../../firebase";
+import useSpotsApi from "../../hooks/useSpotsApi";
+import { useAppDispatch } from "../../store";
+import { loadSpotsActionCreator } from "../../store/spots/spotsSlice";
+import "./SpotsListPage.css";
+
+export const LazySpotsListPage = lazy(
+  () => import("../../pages/SpotsListPage/SpotsListPage"),
+);
 
 const SpotsListPage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -16,7 +20,7 @@ const SpotsListPage = (): React.ReactElement => {
     if (user) {
       (async () => {
         const spots = await getSpots();
-        dispatch(loadSpotsActionCreator(spots));
+        dispatch(loadSpotsActionCreator(spots!));
       })();
     }
   }, [dispatch, getSpots, user]);

@@ -6,6 +6,7 @@ import { User } from "firebase/auth";
 import { setupStore } from "../../store";
 import { spotsMock } from "../../mocks/mocks";
 import { Provider } from "react-redux";
+import userEvent from "@testing-library/user-event";
 
 const store = setupStore({
   spotsStore: {
@@ -52,5 +53,39 @@ describe("Given an App component", () => {
     const navBar = screen.queryByRole("navigation");
 
     expect(navBar).not.toBeInTheDocument();
+  });
+
+  describe("When a Page 404 is rendered and the 'Consulta que espacios tienen su acústica registrada o añade el tuyo.' is clicked", () => {
+    test("Then it should show a page with the title 'Espacios' ", async () => {
+      const expectedHeadingText =
+        "Consulta que espacios tienen su acústica registrada o añade el tuyo.";
+      const store = setupStore({
+        uiStore: {
+          isLoading: false,
+        },
+      });
+
+      const errorPath = "/404";
+
+      const buttonText = "Volver al inicio";
+
+      render(
+        <MemoryRouter initialEntries={[errorPath]}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const backHomeButton = screen.getByRole("button", { name: buttonText });
+
+      await userEvent.click(backHomeButton);
+
+      const listHeading = screen.getByRole("heading", {
+        name: expectedHeadingText,
+      });
+
+      expect(listHeading).toBeInTheDocument();
+    });
   });
 });
