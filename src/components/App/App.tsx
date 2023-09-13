@@ -15,6 +15,7 @@ import Loader from "../Loader/Loader";
 import "react-toastify/dist/ReactToastify.css";
 import Page404, { LazyPage404 } from "../../pages/Page404/Page404";
 import { LazySpotsListPage } from "../../pages/SpotsListPage/SpotsListPage";
+import { LazyNewSpotPage } from "../../pages/NewSpotPage/NewSpotPage";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -37,6 +38,17 @@ const App = (): React.ReactElement => {
               <ProtectedRoute>
                 <Suspense>
                   <LazySpotsListPage />
+                </Suspense>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path={paths.createSpot}
+            element={
+              <ProtectedRoute>
+                <Suspense>
+                  <LazyNewSpotPage />
                 </Suspense>
               </ProtectedRoute>
             }
