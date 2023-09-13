@@ -6,7 +6,7 @@
 }
 
 .new-spot-page__title {
-  font-family: var(--main-font);
+  font-family: var(--main-font), system-ui;
   font-size: 1.3rem;
   color: var(--main-font-color);
   font-weight: 400;

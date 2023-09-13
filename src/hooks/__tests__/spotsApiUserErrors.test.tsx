@@ -16,8 +16,8 @@ const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
 
 describe("Given an userSpotsApi custom hook", () => {
   describe("When a function getSpots is called without a valid user ", () => {
-    test("Then it should show an error on console", async () => {
-      const expectedError = new Error("Can't get spots right now");
+    test("Then it should show an error on console 'With the message¡¡", async () => {
+      const expectedError = new Error("No se pueden mostrar espacios");
 
       const {
         result: {
