@@ -19,11 +19,11 @@ const useSpotsApi = () => {
   const getSpots = useCallback(async (): Promise<Spot[] | undefined> => {
     dispatch(startLoadingActionCreator());
 
-    if (!user) {
-      throw new Error("User not found");
-    }
-
     try {
+      if (!user) {
+        throw new Error("User not found");
+      }
+
       const token = await user.getIdToken();
       const config = {
         headers: {
@@ -42,10 +42,14 @@ const useSpotsApi = () => {
       }));
 
       dispatch(stopLoadingActionCreator());
+
       return spots;
     } catch (error: unknown) {
-      showError((error as Error).message);
+      const message = "Can't get spots right now";
+
+      showError(message);
       dispatch(stopLoadingActionCreator());
+      throw new Error(message);
     }
   }, [dispatch, user]);
 
