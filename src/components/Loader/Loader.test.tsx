@@ -7,11 +7,13 @@ import App from "../App/App";
 import { setupStore } from "../../store";
 
 describe("Given a Loading component", () => {
+  const ariaLabel = "Pantalla de carga";
+
   describe("When is rendered", () => {
     test("Then it should show a loading screen to the user when the page is not charged ", () => {
       render(<Loader />);
 
-      const loader = screen.getByLabelText("loading-screen");
+      const loader = screen.getByLabelText(ariaLabel);
 
       expect(loader).toBeInTheDocument();
     });
@@ -32,7 +34,7 @@ describe("Given a Loading component", () => {
           </BrowserRouter>,
         );
 
-        const loader = screen.getByLabelText("loading-screen");
+        const loader = screen.getByLabelText(ariaLabel);
 
         expect(loader).toBeInTheDocument();
       });
