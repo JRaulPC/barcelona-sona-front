@@ -33,7 +33,7 @@ const HomePage = (): React.ReactElement => {
           className="homepage__image"
           loading="eager"
         />
-        <Button className="login" actionOnClick={login}>
+        <Button className="outline-white" actionOnClick={login}>
           <>
             <img
               src="/img/github.svg"

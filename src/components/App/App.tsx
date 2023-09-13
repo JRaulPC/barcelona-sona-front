@@ -22,10 +22,10 @@ const App = (): React.ReactElement => {
 
   return (
     <>
-      {isLoading && <Loader />}
       <Feedback />
       <div className="container">
         <Header />
+
         <Routes>
           <Route path="/" element={<Navigate to={paths.homePage} />} />
           <Route path={paths.homePage} element={<HomePage />} />
@@ -52,7 +52,9 @@ const App = (): React.ReactElement => {
           />
         </Routes>
 
-        {user && (
+        {isLoading && <Loader />}
+
+        {user && !isLoading && (
           <Suspense>
             <LazyNavigationBar />
           </Suspense>
