@@ -9,17 +9,22 @@ import {
   stopLoadingActionCreator,
 } from "../store/ui/uiSlice";
 import { showError } from "../components/Feedback/toast";
+
 export const apiUrl = import.meta.env.VITE_API_URL;
 
 const useSpotsApi = () => {
   const [user] = useIdToken(auth);
   const dispatch = useAppDispatch();
 
-  const getSpots = useCallback(async (): Promise<Spot[]> => {
+  const getSpots = useCallback(async (): Promise<Spot[] | undefined> => {
     dispatch(startLoadingActionCreator());
 
     try {
-      const token = await user?.getIdToken();
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      const token = await user.getIdToken();
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -31,25 +36,20 @@ const useSpotsApi = () => {
         config,
       );
 
-      const apiSpotsToMap = apiSpots.spots;
-
-      const spots = apiSpotsToMap.map<Spot>(
-        ({ _id, imageUrl, isVisited, name, openingYear, spotUse }) => ({
-          id: _id,
-          imageUrl,
-          isVisited,
-          name,
-          spotUse,
-          openingYear,
-        }),
-      );
+      const spots = apiSpots.spots.map(({ _id, ...spot }) => ({
+        id: _id,
+        ...spot,
+      }));
 
       dispatch(stopLoadingActionCreator());
+
       return spots;
-    } catch {
-      showError();
+    } catch (error: unknown) {
+      const message = "Can't get spots right now";
+
+      showError(message);
       dispatch(stopLoadingActionCreator());
-      throw new Error("Can't get spots right now");
+      throw new Error(message);
     }
   }, [dispatch, user]);
 

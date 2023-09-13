@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 
-export const showError = () =>
-  toast.error("No se pueden cargar tus espacios", {
+export const showError = (message: string) =>
+  toast.error(message, {
     position: "top-left",
     autoClose: 5000,
     hideProgressBar: false,

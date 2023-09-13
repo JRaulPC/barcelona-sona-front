@@ -10,7 +10,7 @@ describe("Given a SpotCard component", () => {
       const headingText = "La modelo";
       const store = setupStore({ spotsStore: { spots: spotsMock } });
       const laModelo = spotsMock[0];
-      const listPosition = 1;
+      const listPosition = 3;
 
       render(
         <Provider store={store}>

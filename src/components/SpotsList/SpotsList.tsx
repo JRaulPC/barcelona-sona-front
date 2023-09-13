@@ -2,13 +2,10 @@ import "./SpotsList.css";
 import { useAppSelector } from "../../store";
 import SpotCard from "../SpotCard/SpotCard";
 import React from "react";
-
-export const LazySpotsListPage = React.lazy(
-  () => import("../../pages/SpotsListPage/SpotsListPage"),
-);
+import { Spot } from "../../types";
 
 const SpotsList = (): React.ReactElement => {
-  const spots = useAppSelector(({ spotsStore: { spots } }) => spots);
+  const spots: Spot[] = useAppSelector(({ spotsStore: { spots } }) => spots);
 
   return (
     <ul className="spots-list">

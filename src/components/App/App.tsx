@@ -7,13 +7,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import React, { Suspense } from "react";
 import "./App.css";
-import { LazySpotsListPage } from "../SpotsList/SpotsList";
+
 import { LazyNavigationBar } from "../NavigationBar/NavigationBar";
 import { useAppSelector } from "../../store";
 import Feedback from "../Feedback/Feedback";
 import Loader from "../Loader/Loader";
 import "react-toastify/dist/ReactToastify.css";
-import Page404, { LazyPage404 } from "../../pages/PageNotFound/Page404";
+import Page404, { LazyPage404 } from "../../pages/Page404/Page404";
+import { LazySpotsListPage } from "../../pages/SpotsListPage/SpotsListPage";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);

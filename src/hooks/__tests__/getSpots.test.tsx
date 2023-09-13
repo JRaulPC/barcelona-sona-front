@@ -9,24 +9,27 @@ import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { setupStore } from "../../store";
 
-describe("Given an userSpotsApi custom hook", () => {
+const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
   const store = setupStore({
     uiStore: {
       isLoading: false,
     },
   });
+  return <Provider store={store}>{children}</Provider>;
+};
 
-  const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
-    return <Provider store={store}>{children}</Provider>;
-  };
+const user: Partial<User> = {
+  displayName: "Emilio",
+  getIdToken: vi.fn().mockResolvedValue("token"),
+};
 
+const authStateHookMock: Partial<AuthStateHook> = [user as User];
+auth.useIdToken = vi.fn().mockReturnValue([user]);
+auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+describe("Given an userSpotsApi custom hook", () => {
   describe("When a function getSpots is called with a request to an spots database", () => {
     test("Then it should return a list of spots", async () => {
-      const user: Partial<User> = { displayName: "Emilio" };
-
-      const authStateHookMock: Partial<AuthStateHook> = [user as User];
-      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
-
       const {
         result: {
           current: { getSpots },
@@ -41,6 +44,15 @@ describe("Given an userSpotsApi custom hook", () => {
 
   describe("When a function getSpots is called with a request to an spots database", () => {
     test("Then it should show a 'Can't get spots right now' message on console", async () => {
+      const user: Partial<User> = {
+        displayName: "Emilio",
+        getIdToken: vi.fn().mockResolvedValue("token"),
+      };
+
+      const authStateHookMock: Partial<AuthStateHook> = [user as User];
+      auth.useIdToken = vi.fn().mockReturnValue([user]);
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
       const expectedError = new Error("Can't get spots right now");
       server.resetHandlers(...errorHandlers);
 

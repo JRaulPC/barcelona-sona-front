@@ -9,12 +9,16 @@ import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 describe("Given a Spots list page", () => {
   describe("When is rendered", () => {
     test("Then it should show a heading with the text 'Espacios'", () => {
-      const user: Partial<User> = { displayName: "Emilio" };
+      const user: Partial<User> = {
+        displayName: "Emilio",
+        getIdToken: vi.fn().mockResolvedValue("token"),
+      };
 
       const authStateHookMock: Partial<AuthStateHook> = [user as User];
+      auth.useIdToken = vi.fn().mockReturnValue([user]);
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
-      const headerText = "Espacios";
+      const expectedHeadingText = "Espacios";
       const store = setupStore({
         spotsStore: {
           spots: spotsMock,
@@ -27,7 +31,9 @@ describe("Given a Spots list page", () => {
         </Provider>,
       );
 
-      const heading = screen.getByRole("heading", { name: headerText });
+      const heading = screen.getByRole("heading", {
+        name: expectedHeadingText,
+      });
 
       expect(heading).toBeInTheDocument();
     });
