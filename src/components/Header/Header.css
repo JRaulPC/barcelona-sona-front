@@ -3,8 +3,7 @@
   width: 100vw;
   display: flex;
   align-items: center;
-  padding-left: 16px;
-  padding-right: 8px;
+  padding: 34px;
   justify-content: space-between;
   background: var(--header-bg-color);
 }

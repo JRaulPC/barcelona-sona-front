@@ -2,8 +2,14 @@ import "./Loader.css";
 
 const Loader = (): React.ReactElement => {
   return (
-    <div className="loader">
-      <div className="loader__loading" aria-label="loading-screen"></div>
+    <div aria-label="Pantalla de carga" className="loader">
+      <div className="ball"></div>
+      <div className="ball"></div>
+      <div className="ball"></div>
+      <div className="ball"></div>
+      <div className="ball"></div>
+      <div className="ball"></div>
+      <div className="ball"></div>
     </div>
   );
 };
