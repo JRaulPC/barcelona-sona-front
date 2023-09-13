@@ -31,9 +31,9 @@
   width: 200px;
   height: 40px;
   display: flex;
-  padding: 24px 10px;
+  padding: 24px;
   align-items: center;
-  gap: 6px;
+  gap: 24px;
   justify-content: center;
   border-radius: 38px;
   border: 1px solid var(--login-button);

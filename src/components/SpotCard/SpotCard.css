@@ -45,3 +45,11 @@
   line-height: 24px; /* 171.429% */
   letter-spacing: 0.5px;
 }
+
+.outlined-red {
+  width: 124px;
+  height: 40px;
+  border: solid 1px var(--button-soft-red);
+  border-radius: 100px;
+  color: var(--button-soft-red);
+}

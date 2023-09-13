@@ -1,4 +1,7 @@
+import { useAppDispatch } from "../../store";
+import { deleteSpotActionCreator } from "../../store/spots/spotsSlice";
 import { Spot } from "../../types";
+import Button from "../Button/Button";
 import "./SpotCard.css";
 export interface SpotCardProps {
   spot: Partial<Spot>;
@@ -6,9 +9,15 @@ export interface SpotCardProps {
 }
 
 const SpotCard = ({
-  spot: { imageUrl, name, openingYear, spotUse },
+  spot: { imageUrl, name, openingYear, spotUse, id },
   listPosition,
 }: SpotCardProps): React.ReactElement => {
+  const dispatch = useAppDispatch();
+
+  const deleteItem = () => {
+    dispatch(deleteSpotActionCreator(id!));
+  };
+
   return (
     <article className="spot-card">
       <img
@@ -30,6 +39,11 @@ const SpotCard = ({
             Lo has visitado?
           </label>
           <input type="checkbox" id={`visited${name?.replace(/\s/g, "")}`} />
+        </div>
+        <div>
+          <Button className="outlined-red" actionOnClick={deleteItem}>
+            Eliminar
+          </Button>
         </div>
       </div>
     </article>
