@@ -1,10 +1,14 @@
 import { rest } from "msw";
 import { apiUrl } from "../hooks/useSpotsApi";
-import { apiSpotsMock } from "./mocks";
+import { apiSpotsMock, spotsMock } from "./mocks";
 
 export const handlers = [
   rest.get(`${apiUrl}/spots`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json(apiSpotsMock));
+  }),
+
+  rest.delete(`${apiUrl}/spots/${spotsMock[0].id}`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json("Espacio borrado con éxito"));
   }),
 ];
 

@@ -1,3 +1,4 @@
+import useSpotsApi from "../../hooks/useSpotsApi";
 import { useAppDispatch } from "../../store";
 import { deleteSpotActionCreator } from "../../store/spots/spotsSlice";
 import { Spot } from "../../types";
@@ -12,10 +13,12 @@ const SpotCard = ({
   spot: { imageUrl, name, openingYear, spotUse, id },
   listPosition,
 }: SpotCardProps): React.ReactElement => {
+  const { deleteSpot } = useSpotsApi();
   const dispatch = useAppDispatch();
 
   const deleteItem = () => {
     dispatch(deleteSpotActionCreator(id!));
+    deleteSpot(id!);
   };
 
   return (

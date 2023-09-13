@@ -3,6 +3,7 @@ import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { setupStore } from "../../store";
 import useSpotsApi from "../useSpotsApi";
+import { idToDelete } from "../../mocks/mocks";
 
 const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
   const store = setupStore({
@@ -27,6 +28,22 @@ describe("Given an userSpotsApi custom hook", () => {
       const spots = getSpots();
 
       expect(spots).rejects.toThrowError(expectedError);
+    });
+  });
+
+  describe("When a function deleteSpot is called without a valid user ", () => {
+    test("Then it should show an error on console", async () => {
+      const expectedError = new Error("No se puede borrar el espacio");
+
+      const {
+        result: {
+          current: { deleteSpot },
+        },
+      } = renderHook(() => useSpotsApi(), { wrapper });
+
+      const message = deleteSpot(idToDelete);
+
+      expect(message).rejects.toThrowError(expectedError);
     });
   });
 });
