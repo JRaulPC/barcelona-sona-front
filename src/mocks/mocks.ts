@@ -42,3 +42,5 @@ export const spotsMock: Spot[] = [
     isVisited: false,
   },
 ];
+
+export const idToDelete = spotsMock[0].id;
