@@ -26,7 +26,7 @@ const Page404 = (): React.ReactElement => {
           No hemos encontrado lo que buscabas
         </span>
       </div>
-      <Button className="go-home" actionOnClick={goHome}>
+      <Button className="outline-white" actionOnClick={goHome}>
         Volver al inicio
       </Button>
     </main>
