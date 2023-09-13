@@ -1,18 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import Button from "../../components/Button/Button";
+import { lazy } from "react";
+import { Link } from "react-router-dom";
 import paths from "../../paths/paths";
 import "./Page404.css";
-import { lazy } from "react";
 
 export const LazyPage404 = lazy(() => import("./Page404"));
 
 const Page404 = (): React.ReactElement => {
-  const navigate = useNavigate();
-
-  const goHome = () => {
-    navigate(paths.homePage);
-  };
-
   return (
     <main className="page-404">
       <div className="page-404__info">
@@ -26,9 +19,9 @@ const Page404 = (): React.ReactElement => {
           No hemos encontrado lo que buscabas
         </span>
       </div>
-      <Button className="outline-white" actionOnClick={goHome}>
+      <Link className="outline-white" to={paths.homePage}>
         Volver al inicio
-      </Button>
+      </Link>
     </main>
   );
 };

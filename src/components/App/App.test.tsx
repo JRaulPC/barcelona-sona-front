@@ -77,7 +77,7 @@ describe("Given an App component", () => {
         </MemoryRouter>,
       );
 
-      const backHomeButton = screen.getByRole("button", { name: buttonText });
+      const backHomeButton = screen.getByRole("link", { name: buttonText });
 
       await userEvent.click(backHomeButton);
 
