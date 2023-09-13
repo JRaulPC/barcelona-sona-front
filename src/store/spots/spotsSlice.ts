@@ -17,6 +17,7 @@ const spotsSlice = createSlice({
       ...currentSpotsState,
       spots: action.payload,
     }),
+
     deleteSpot: (
       currentSpotsState,
       action: PayloadAction<string>,
@@ -26,6 +27,11 @@ const spotsSlice = createSlice({
         (spot) => spot.id !== action.payload,
       ),
     }),
+
+    addSpot: (currentSpotsState, action: PayloadAction<Spot>): SpotsState => ({
+      ...currentSpotsState,
+      spots: [...currentSpotsState.spots, action.payload],
+    }),
   },
 });
 
@@ -34,4 +40,5 @@ export const spotsReducer = spotsSlice.reducer;
 export const {
   loadSpots: loadSpotsActionCreator,
   deleteSpot: deleteSpotActionCreator,
+  addSpot: addsSpotActionCreator,
 } = spotsSlice.actions;
