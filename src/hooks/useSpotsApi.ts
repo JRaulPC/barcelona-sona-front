@@ -8,7 +8,7 @@ import {
   startLoadingActionCreator,
   stopLoadingActionCreator,
 } from "../store/ui/uiSlice";
-import { showError } from "../components/Feedback/toast";
+import { showFeedback } from "../components/Feedback/toast";
 
 export const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -47,7 +47,7 @@ const useSpotsApi = () => {
     } catch (error: unknown) {
       const message = "Can't get spots right now";
 
-      showError(message);
+      showFeedback(message, "error");
       dispatch(stopLoadingActionCreator());
       throw new Error(message);
     }

@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 
-export const showError = (message: string) =>
-  toast.error(message, {
+export const showFeedback = (message: string, type: "error" | "success") =>
+  toast[type](message, {
     position: "top-left",
     autoClose: 5000,
     hideProgressBar: false,
