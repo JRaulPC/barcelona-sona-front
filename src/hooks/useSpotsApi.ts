@@ -53,7 +53,40 @@ const useSpotsApi = () => {
     }
   }, [dispatch, user]);
 
-  return { getSpots };
+  const deleteSpot = useCallback(
+    async (id: string) => {
+      try {
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        const token = await user.getIdToken();
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        const { data: message } = await axios.delete<string>(
+          `${apiUrl}/spots/${id}`,
+          config,
+        );
+
+        showFeedback(message, "success");
+
+        return message;
+      } catch (error: unknown) {
+        const message = "No se puede borrar el espacio";
+
+        showFeedback(message, "error");
+        dispatch(stopLoadingActionCreator());
+        throw new Error(message);
+      }
+    },
+    [dispatch, user],
+  );
+
+  return { getSpots, deleteSpot };
 };
 
 export default useSpotsApi;
