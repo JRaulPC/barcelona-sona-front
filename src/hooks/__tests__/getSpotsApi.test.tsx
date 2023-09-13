@@ -42,7 +42,7 @@ describe("Given an userSpotsApi custom hook", () => {
     });
   });
 
-  describe("When a function getSpots is called with a request to an spots database", () => {
+  describe("When a function getSpots is called with a request to an spots database and the server can't deliver the spots", () => {
     test("Then it should show a 'Can't get spots right now' message on console", async () => {
       const user: Partial<User> = {
         displayName: "Emilio",
@@ -53,7 +53,7 @@ describe("Given an userSpotsApi custom hook", () => {
       auth.useIdToken = vi.fn().mockReturnValue([user]);
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
-      const expectedError = new Error("Can't get spots right now");
+      const expectedError = new Error("No se pueden mostrar espacios");
       server.resetHandlers(...errorHandlers);
 
       const {

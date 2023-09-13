@@ -45,7 +45,7 @@ const useSpotsApi = () => {
 
       return spots;
     } catch (error: unknown) {
-      const message = "Can't get spots right now";
+      const message = "No se pueden mostrar espacios";
 
       showFeedback(message, "error");
       dispatch(stopLoadingActionCreator());
