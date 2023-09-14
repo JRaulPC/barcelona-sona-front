@@ -4,6 +4,7 @@ import Button from "../Button/Button";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import React from "react";
+import paths from "../../paths/paths";
 
 export const LazyNavigationBar = React.lazy(
   () => import("../NavigationBar/NavigationBar"),
@@ -35,7 +36,7 @@ const NavigationBar = (): React.ReactElement => {
           </Button>
         </li>
         <li className="navigation-bar__element">
-          <NavLink to="/añadir" className="navigation-bar__link">
+          <NavLink to={paths.createSpot} className="navigation-bar__link">
             <img
               src="/img/icon-add.svg"
               alt="Link para acceder a la página añadir un espacio"
@@ -47,7 +48,7 @@ const NavigationBar = (): React.ReactElement => {
           Crear
         </li>
         <li className="navigation-bar__element">
-          <NavLink to="/espacios" className="navigation-bar__link">
+          <NavLink to={paths.homePage} className="navigation-bar__link">
             <img
               src="/img/icon-list.svg"
               alt="Link para acceder a la página de listado"
