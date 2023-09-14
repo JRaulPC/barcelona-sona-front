@@ -8,7 +8,10 @@ export const handlers = [
   }),
 
   rest.delete(`${apiUrl}/spots/${spotsMock[0].id}`, (_req, res, ctx) => {
-    return res(ctx.status(200), ctx.json("Espacio borrado con éxito"));
+    return res(
+      ctx.status(200),
+      ctx.json({ message: "Espacio borrado con éxito" }),
+    );
   }),
 ];
 

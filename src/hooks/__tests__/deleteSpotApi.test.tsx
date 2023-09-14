@@ -5,12 +5,15 @@ import { User } from "firebase/auth";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 import useSpotsApi from "../useSpotsApi";
 import { renderHook } from "@testing-library/react";
-import { idToDelete } from "../../mocks/mocks";
+import { idToDelete, spotsMock } from "../../mocks/mocks";
 
 const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
   const store = setupStore({
     uiStore: {
       isLoading: false,
+    },
+    spotsStore: {
+      spots: spotsMock,
     },
   });
   return <Provider store={store}>{children}</Provider>;
@@ -38,7 +41,7 @@ describe("Given an userSpotsApi custom hook", () => {
 
       const message = await deleteSpot(idToDelete);
 
-      expect(message).toBe(succesMessage);
+      expect(message).toStrictEqual(succesMessage);
     });
   });
 });
