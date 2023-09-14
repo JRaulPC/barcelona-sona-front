@@ -6,10 +6,6 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import paths from "../../paths/paths";
 
-export const LazyNavigationBar = React.lazy(
-  () => import("../NavigationBar/NavigationBar"),
-);
-
 const NavigationBar = (): React.ReactElement => {
   const logout = async () => {
     await signOut(auth);
