@@ -44,3 +44,11 @@ export const spotsMock: Spot[] = [
 ];
 
 export const idToDelete = spotsMock[0].id;
+
+export const formMock: Partial<Spot> = {
+  name: "St. Felip Neri",
+  isVisited: true,
+  openingYear: 1500,
+  spotUse: "church",
+  imageUrl: "https://s2.qwant.cfelipneri.jp&p=0&a=0.jpg",
+};
