@@ -7,7 +7,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import React, { Suspense } from "react";
 import "./App.css";
-
 import { LazyNavigationBar } from "../NavigationBar/NavigationBar";
 import { useAppSelector } from "../../store";
 import Feedback from "../Feedback/Feedback";

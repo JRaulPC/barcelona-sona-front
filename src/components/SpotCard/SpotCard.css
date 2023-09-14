@@ -46,6 +46,11 @@
   letter-spacing: 0.5px;
 }
 
+.spot-card__image {
+  object-fit: cover;
+  object-position: center;
+}
+
 .outlined-red {
   width: 124px;
   height: 40px;
