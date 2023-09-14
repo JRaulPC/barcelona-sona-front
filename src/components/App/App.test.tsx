@@ -59,13 +59,14 @@ describe("Given an App component", () => {
     test("Then it should show a page with the title 'Espacios' ", async () => {
       const expectedHeadingText =
         "Consulta que espacios tienen su acústica registrada o añade el tuyo.";
+
       const store = setupStore({
         uiStore: {
           isLoading: false,
         },
       });
 
-      const errorPath = "/404";
+      const errorPath = "/holi";
 
       const buttonText = "Volver al inicio";
 
@@ -77,9 +78,11 @@ describe("Given an App component", () => {
         </MemoryRouter>,
       );
 
-      const backHomeButton = screen.getByRole("link", { name: buttonText });
+      const backHomeLink = await screen.findByRole("link", {
+        name: buttonText,
+      });
 
-      await userEvent.click(backHomeButton);
+      await userEvent.click(backHomeLink);
 
       const listHeading = screen.getByRole("heading", {
         name: expectedHeadingText,

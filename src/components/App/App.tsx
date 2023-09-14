@@ -7,12 +7,12 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import React, { Suspense } from "react";
 import "./App.css";
-import { LazyNavigationBar } from "../NavigationBar/NavigationBar";
+import NavigationBar from "../NavigationBar/NavigationBar";
 import { useAppSelector } from "../../store";
 import Feedback from "../Feedback/Feedback";
 import Loader from "../Loader/Loader";
 import "react-toastify/dist/ReactToastify.css";
-import Page404, { LazyPage404 } from "../../pages/Page404/Page404";
+import { LazyPage404 } from "../../pages/Page404/Page404";
 import { LazySpotsListPage } from "../../pages/SpotsListPage/SpotsListPage";
 import { LazyNewSpotPage } from "../../pages/NewSpotPage/NewSpotPage";
 
@@ -25,12 +25,9 @@ const App = (): React.ReactElement => {
       <Feedback />
       <div className="container">
         <Header />
-
         <Routes>
           <Route path="/" element={<Navigate to={paths.homePage} />} />
           <Route path={paths.homePage} element={<HomePage />} />
-          <Route path={paths.notFound} element={<Page404 />} />
-
           <Route
             path={paths.spots}
             element={
@@ -41,7 +38,6 @@ const App = (): React.ReactElement => {
               </ProtectedRoute>
             }
           />
-
           <Route
             path={paths.createSpot}
             element={
@@ -52,9 +48,8 @@ const App = (): React.ReactElement => {
               </ProtectedRoute>
             }
           />
-
           <Route
-            path={paths.notFound}
+            path="*"
             element={
               <Suspense>
                 <LazyPage404 />
@@ -65,11 +60,7 @@ const App = (): React.ReactElement => {
 
         {isLoading && <Loader />}
 
-        {user && !isLoading && (
-          <Suspense>
-            <LazyNavigationBar />
-          </Suspense>
-        )}
+        {user && !isLoading && <NavigationBar />}
       </div>
     </>
   );
