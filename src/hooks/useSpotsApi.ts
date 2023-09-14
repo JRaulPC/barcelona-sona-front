@@ -8,7 +8,7 @@ import {
   startLoadingActionCreator,
   stopLoadingActionCreator,
 } from "../store/ui/uiSlice";
-import { showFeedback } from "../components/Feedback/toast";
+import { showFeedback, successFeedback } from "../components/Feedback/toast";
 
 export const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -47,7 +47,7 @@ const useSpotsApi = () => {
     } catch (error: unknown) {
       const message = "No se pueden mostrar espacios";
 
-      showFeedback(message, "error");
+      showFeedback(message, "error", "error");
       dispatch(stopLoadingActionCreator());
       throw new Error(message);
     }
@@ -67,18 +67,17 @@ const useSpotsApi = () => {
           },
         };
 
-        const { data: message } = await axios.delete<string>(
-          `${apiUrl}/spots/${id}`,
-          config,
-        );
+        const {
+          data: { message },
+        } = await axios.delete(`${apiUrl}/spots/${id}`, config);
 
-        showFeedback(message, "success");
+        showFeedback(successFeedback, "success", "success");
 
         return message;
       } catch (error: unknown) {
         const message = "No se puede borrar el espacio";
 
-        showFeedback(message, "error");
+        showFeedback(message, "error", "success");
         dispatch(stopLoadingActionCreator());
         throw new Error(message);
       }

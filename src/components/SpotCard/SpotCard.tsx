@@ -17,9 +17,9 @@ const SpotCard = ({
   const { deleteSpot } = useSpotsApi();
   const dispatch = useAppDispatch();
 
-  const deleteItem = () => {
+  const deleteItem = async () => {
+    await deleteSpot(id!);
     dispatch(deleteSpotActionCreator(id!));
-    deleteSpot(id!);
   };
 
   return (
