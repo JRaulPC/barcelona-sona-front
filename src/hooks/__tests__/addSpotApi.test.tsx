@@ -1,11 +1,12 @@
+import { renderHook } from "@testing-library/react";
+import useSpotsApi from "../useSpotsApi";
 import { PropsWithChildren } from "react";
 import { setupStore } from "../../store";
+import { formMock, spotsMock } from "../../mocks/mocks";
 import { Provider } from "react-redux";
-import { User } from "firebase/auth";
+
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
-import useSpotsApi from "../useSpotsApi";
-import { renderHook } from "@testing-library/react";
-import { idToDelete, spotsMock } from "../../mocks/mocks";
+import { User } from "firebase/auth";
 
 const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
   const store = setupStore({
@@ -29,19 +30,17 @@ auth.useIdToken = vi.fn().mockReturnValue([user]);
 auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
 describe("Given an userSpotsApi custom hook", () => {
-  describe("When a function deleteSpot is called with the spot id of 'La modelo' ", () => {
-    test("Then it should show a message with the text 'Espacio borrado con éxito", async () => {
-      const succesMessage = "Espacio borrado con éxito";
-
+  describe("When a function addSpot is called with the spot 'St. Felip Neri'", () => {
+    test("Then it should send a request to add the spot 'St. Felip Neri' to the database", async () => {
       const {
         result: {
-          current: { deleteSpot },
+          current: { addSpot },
         },
       } = renderHook(() => useSpotsApi(), { wrapper });
 
-      const message = await deleteSpot(idToDelete);
+      const newSpot = await addSpot(formMock);
 
-      expect(message).toStrictEqual(succesMessage);
+      expect(newSpot).toStrictEqual(formMock);
     });
   });
 });

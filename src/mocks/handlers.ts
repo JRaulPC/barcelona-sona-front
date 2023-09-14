@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { apiUrl } from "../hooks/useSpotsApi";
-import { apiSpotsMock, spotsMock } from "./mocks";
+import { apiSpotsMock, formMock, spotsMock } from "./mocks";
 
 export const handlers = [
   rest.get(`${apiUrl}/spots`, (_req, res, ctx) => {
@@ -12,6 +12,10 @@ export const handlers = [
       ctx.status(200),
       ctx.json({ message: "Espacio borrado con éxito" }),
     );
+  }),
+
+  rest.post(`${apiUrl}/spots`, (_req, res, ctx) => {
+    return res(ctx.status(201), ctx.json(formMock));
   }),
 ];
 
