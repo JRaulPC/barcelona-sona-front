@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 
-export const successFeedback = "El objeto ha sido borrado con éxito";
+export const deleteSuccessFeedback = "El objeto ha sido borrado con éxito";
+export const createSuccesFeedback = "El objeto ha sido creado con éxito";
 
 export const showFeedback = (
   message: string,

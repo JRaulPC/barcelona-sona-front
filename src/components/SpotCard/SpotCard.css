@@ -33,7 +33,6 @@
 
 .spot-card__checkbox {
   color: var(--main-font-color);
-  font-weight: 400;
   display: flex;
   justify-content: space-between;
   height: 48px;

@@ -8,7 +8,11 @@ import {
   startLoadingActionCreator,
   stopLoadingActionCreator,
 } from "../store/ui/uiSlice";
-import { showFeedback, successFeedback } from "../components/Feedback/toast";
+import {
+  createSuccesFeedback,
+  deleteSuccessFeedback,
+  showFeedback,
+} from "../components/Feedback/toast";
 
 export const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -71,7 +75,7 @@ const useSpotsApi = () => {
           data: { message },
         } = await axios.delete(`${apiUrl}/spots/${id}`, config);
 
-        showFeedback(successFeedback, "success", "success");
+        showFeedback(deleteSuccessFeedback, "success", "success");
 
         return message;
       } catch (error: unknown) {
@@ -85,7 +89,42 @@ const useSpotsApi = () => {
     [dispatch, user],
   );
 
-  return { getSpots, deleteSpot };
+  const addSpot = useCallback(
+    async (spot: Partial<Spot>) => {
+      try {
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        const token = await user.getIdToken();
+        const requestConfig = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        const { data: newSpot } = await axios.post<Spot>(
+          `${apiUrl}/spots`,
+          spot,
+          requestConfig,
+        );
+
+        showFeedback(createSuccesFeedback, "error", "error");
+
+        return newSpot;
+      } catch (error: unknown) {
+        const message = "No se pudo añadir el espacio";
+
+        showFeedback(message, "error", "error");
+
+        dispatch(stopLoadingActionCreator());
+        throw new Error(message);
+      }
+    },
+    [dispatch, user],
+  );
+
+  return { getSpots, deleteSpot, addSpot };
 };
 
 export default useSpotsApi;
