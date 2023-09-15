@@ -1,4 +1,4 @@
-import { lazy, useEffect } from "react";
+import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SpotsList from "../../components/SpotsList/SpotsList";
 import { auth } from "../../firebase";
@@ -6,10 +6,6 @@ import useSpotsApi from "../../hooks/useSpotsApi";
 import { useAppDispatch } from "../../store";
 import { loadSpotsActionCreator } from "../../store/spots/spotsSlice";
 import "./SpotsListPage.css";
-
-export const LazySpotsListPage = lazy(
-  () => import("../../pages/SpotsListPage/SpotsListPage"),
-);
 
 const SpotsListPage = (): React.ReactElement => {
   const [user] = useAuthState(auth);

@@ -1,9 +1,5 @@
-/* eslint-disable react/no-unescaped-entities */
-import { lazy } from "react";
 import "./NewSpotPage.css";
 import NewSpot from "../../components/NewSpot/NewSpot";
-
-export const LazyNewSpotPage = lazy(() => import("../NewSpotPage/NewSpotPage"));
 
 const NewSpotPage = () => {
   return (
