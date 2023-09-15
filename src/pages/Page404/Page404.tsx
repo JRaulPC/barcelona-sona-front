@@ -1,9 +1,6 @@
-import { lazy } from "react";
 import { Link } from "react-router-dom";
 import paths from "../../paths/paths";
 import "./Page404.css";
-
-export const LazyPage404 = lazy(() => import("./Page404"));
 
 const Page404 = (): React.ReactElement => {
   return (

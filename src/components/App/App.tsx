@@ -12,9 +12,11 @@ import { useAppSelector } from "../../store";
 import Feedback from "../Feedback/Feedback";
 import Loader from "../Loader/Loader";
 import "react-toastify/dist/ReactToastify.css";
-import { LazyPage404 } from "../../pages/Page404/Page404";
-import { LazySpotsListPage } from "../../pages/SpotsListPage/SpotsListPage";
-import { LazyNewSpotPage } from "../../pages/NewSpotPage/NewSpotPage";
+import {
+  LazyNewSpotPage,
+  LazyPage404,
+  LazySpotsListPage,
+} from "../../pages/LazyPages/LazyPages";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);

@@ -29,7 +29,7 @@ const useSpotsApi = () => {
       }
 
       const token = await user.getIdToken();
-      const config = {
+      const requestConfig = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -37,7 +37,7 @@ const useSpotsApi = () => {
 
       const { data: apiSpots } = await axios.get<ApiSpots>(
         `${apiUrl}/spots`,
-        config,
+        requestConfig,
       );
 
       const spots = apiSpots.spots.map(({ _id, ...spot }) => ({
@@ -51,7 +51,7 @@ const useSpotsApi = () => {
     } catch (error: unknown) {
       const message = "No se pueden mostrar espacios";
 
-      showFeedback(message, "error", "error");
+      showFeedback(message, "error");
       dispatch(stopLoadingActionCreator());
       throw new Error(message);
     }
@@ -65,7 +65,7 @@ const useSpotsApi = () => {
         }
 
         const token = await user.getIdToken();
-        const config = {
+        const requestConfig = {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -73,15 +73,15 @@ const useSpotsApi = () => {
 
         const {
           data: { message },
-        } = await axios.delete(`${apiUrl}/spots/${id}`, config);
+        } = await axios.delete(`${apiUrl}/spots/${id}`, requestConfig);
 
-        showFeedback(deleteSuccessFeedback, "success", "success");
+        showFeedback(deleteSuccessFeedback, "success");
 
         return message;
       } catch (error: unknown) {
         const message = "No se puede borrar el espacio";
 
-        showFeedback(message, "error", "success");
+        showFeedback(message, "error");
         dispatch(stopLoadingActionCreator());
         throw new Error(message);
       }
@@ -109,13 +109,13 @@ const useSpotsApi = () => {
           requestConfig,
         );
 
-        showFeedback(createSuccesFeedback, "error", "error");
+        showFeedback(createSuccesFeedback, "success");
 
         return newSpot;
       } catch (error: unknown) {
         const message = "No se pudo añadir el espacio";
 
-        showFeedback(message, "error", "error");
+        showFeedback(message, "error");
 
         dispatch(stopLoadingActionCreator());
         throw new Error(message);

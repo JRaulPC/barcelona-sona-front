@@ -30,7 +30,7 @@ const SpotCard = ({
         alt={`El espacio ${name}`}
         width="288"
         height="312"
-        loading={listPosition < 2 ? "eager" : "lazy"}
+        {...(listPosition > 3 ? { loading: "lazy" } : {})}
       />
       <div className="spot-card__info">
         <h2 className="spot-card__heading">{name}</h2>
