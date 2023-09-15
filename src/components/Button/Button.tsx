@@ -4,7 +4,7 @@ interface ButtonProps extends PropsWithChildren {
   className: string;
   actionOnClick?: () => void;
   disabled?: boolean;
-  type: "button" | "submit" | "reset";
+  type?: "button" | "submit" | "reset";
 }
 
 const Button = ({
