@@ -16,6 +16,7 @@ const NavigationBar = (): React.ReactElement => {
       <ul className="navigation-bar__links">
         <li className="navigation-bar__element">
           <Button
+            type="button"
             actionOnClick={logout}
             className="navigation-bar__exit-button"
           >
