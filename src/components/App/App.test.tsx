@@ -118,7 +118,7 @@ describe("Given an App component", () => {
       const imageInputLabelText = "URL Imagen";
       const openingYearLabelText = "Año de creación";
       const spotUseInputLabelText = "Función del espacio";
-
+      const spotDescriptionInputLabelText = "Descripción";
       const buttonText = "Añadir espacio";
 
       const nameInput = await screen.findByLabelText(nameInputLabelText);
@@ -127,11 +127,15 @@ describe("Given an App component", () => {
         openingYearLabelText,
       );
       const spotUseInput = await screen.findByLabelText(spotUseInputLabelText);
+      const descriptionInput = screen.getByLabelText(
+        spotDescriptionInputLabelText,
+      ) as HTMLInputElement;
 
       await userEvent.type(nameInput, formMock.name!);
       await userEvent.type(imageInput, formMock.imageUrl!);
       await userEvent.type(OpeningYearInput, formMock.openingYear!.toString());
       await userEvent.type(spotUseInput, formMock.spotUse!.toString());
+      await userEvent.type(descriptionInput, formMock.description!);
 
       const createButton = await screen.findByRole("button", {
         name: buttonText,

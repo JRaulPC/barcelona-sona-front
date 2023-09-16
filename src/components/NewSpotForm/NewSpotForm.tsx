@@ -115,7 +115,6 @@ const NewSpotForm = (): React.ReactElement => {
           type="checkbox"
           id="isVisited"
           onChange={handleChange}
-          value={"off"}
         />
       </div>
       <div className="form-spot__button">

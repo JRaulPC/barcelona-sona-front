@@ -10,6 +10,7 @@ export const apiSpotsMock: ApiSpots = {
       spotUse: "Carcel",
       openingYear: 1910,
       isVisited: false,
+      description: "La modelo es un espacio...",
     },
     {
       _id: "2",
@@ -19,6 +20,7 @@ export const apiSpotsMock: ApiSpots = {
       spotUse: "Auditori",
       openingYear: 1856,
       isVisited: false,
+      description: "El Palau de la música es un espacio...",
     },
   ],
 };
@@ -32,6 +34,7 @@ export const spotsMock: Spot[] = [
     spotUse: "Carcel",
     openingYear: 1910,
     isVisited: false,
+    description: "La modelo es un espacio...",
   },
   {
     id: "2",
@@ -41,6 +44,7 @@ export const spotsMock: Spot[] = [
     spotUse: "Auditori",
     openingYear: 1856,
     isVisited: false,
+    description: "El Palau de la música es un espacio...",
   },
 ];
 
@@ -52,6 +56,7 @@ export const formMock: Partial<Spot> = {
   openingYear: 1500,
   spotUse: "church",
   imageUrl: "https://s2.qwant.cfelipneri.jp&p=0&a=0.jpg",
+  description: "St.Felip Neri es una iglesia de...",
 };
 
 export const addSpotWithFormMock: ApiSpots = {
@@ -64,6 +69,7 @@ export const addSpotWithFormMock: ApiSpots = {
       spotUse: "Carcel",
       openingYear: 1910,
       isVisited: false,
+      description: "La modelo es un espacio...",
     },
     {
       _id: "2",
@@ -73,6 +79,7 @@ export const addSpotWithFormMock: ApiSpots = {
       spotUse: "Auditori",
       openingYear: 1856,
       isVisited: false,
+      description: "El Palau de la música es un espacio...",
     },
     {
       _id: "3",
@@ -81,6 +88,7 @@ export const addSpotWithFormMock: ApiSpots = {
       openingYear: 1500,
       spotUse: "church",
       imageUrl: "https://s2.qwant.cfelipneri.jp&p=0&a=0.jpg",
+      description: "St.Felip Neri es una iglesia de...",
     },
   ],
 };

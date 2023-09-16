@@ -10,19 +10,20 @@ describe("Given an addSpots reducer", () => {
         spots: spotsMock,
       };
 
-      const stFelipNeri: Spot = {
+      const stFelipNeriMock: Spot = {
         id: "1",
         name: "St. Felip Neri",
         isVisited: true,
         openingYear: 1500,
         spotUse: "church",
         imageUrl: "https://s2.qwant.cfelipneri.jp&p=0&a=0.jpg",
+        description: "St.Felip Neri es una iglesia de...",
       };
 
-      const addSpotAction = addsSpotActionCreator(stFelipNeri);
+      const addSpotAction = addsSpotActionCreator(stFelipNeriMock);
       const newSpotsState = spotsReducer(currentSpotsState, addSpotAction);
 
-      expect(newSpotsState.spots).toContain(stFelipNeri);
+      expect(newSpotsState.spots).toContain(stFelipNeriMock);
     });
   });
 });

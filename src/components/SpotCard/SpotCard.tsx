@@ -5,7 +5,7 @@ import { Spot } from "../../types";
 import Button from "../Button/Button";
 import "./SpotCard.css";
 
-export interface SpotCardProps {
+interface SpotCardProps {
   spot: Partial<Spot>;
   listPosition: number;
 }
