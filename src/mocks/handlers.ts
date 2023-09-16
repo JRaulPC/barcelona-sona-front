@@ -2,8 +2,10 @@ import { rest } from "msw";
 import { apiUrl } from "../hooks/useSpotsApi";
 import {
   addSpotWithFormMock,
+  apiSpot,
   apiSpotsMock,
   formMock,
+  spotMock,
   spotsMock,
 } from "./mocks";
 
@@ -11,8 +13,9 @@ export const handlers = [
   rest.get(`${apiUrl}/spots`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json(apiSpotsMock));
   }),
-  rest.get(`${apiUrl}/spots/${spotsMock[0].id}`, (_req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(spotsMock[0]));
+
+  rest.get(`${apiUrl}/spots/${spotMock.id}`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(apiSpot));
   }),
 
   rest.delete(`${apiUrl}/spots/${spotsMock[0].id}`, (_req, res, ctx) => {

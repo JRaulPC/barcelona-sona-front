@@ -1,18 +1,18 @@
-import { useCallback } from "react";
-import { ApiSpot, ApiSpots, Spot } from "../types";
 import axios from "axios";
+import { useCallback } from "react";
 import { useIdToken } from "react-firebase-hooks/auth";
+import {
+  createSuccesFeedback,
+  deleteSuccessFeedback,
+  showFeedback,
+} from "../components/Feedback/toast";
 import { auth } from "../firebase";
 import { useAppDispatch } from "../store";
 import {
   startLoadingActionCreator,
   stopLoadingActionCreator,
 } from "../store/ui/uiSlice";
-import {
-  createSuccesFeedback,
-  deleteSuccessFeedback,
-  showFeedback,
-} from "../components/Feedback/toast";
+import { ApiSpots, Spot } from "../types";
 
 export const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -61,7 +61,7 @@ const useSpotsApi = () => {
     async (id: string) => {
       try {
         if (!user) {
-          throw new Error("User not found");
+          throw new Error("Usuario no encontrado");
         }
 
         const token = await user.getIdToken();
@@ -138,14 +138,15 @@ const useSpotsApi = () => {
           },
         };
 
-        const { data: apiSpot } = await axios.get<ApiSpot>(
+        const { data: apiSpot } = await axios.get(
           `${apiUrl}/spots/${id}`,
           requestConfig,
         );
 
-        const spotById: Spot = { id: apiSpot._id, ...apiSpot };
+        const selectedSpot = { id: apiSpot.spot._id, ...apiSpot.spot };
+        delete selectedSpot._id;
 
-        return spotById;
+        return selectedSpot;
       } catch (error: unknown) {
         const message = "No se puede mostrar el espacio";
 
