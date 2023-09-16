@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
+  padding-bottom: 130px;
 }
 
 .form-control {
@@ -13,7 +14,7 @@
   gap: 4px;
 }
 
-.form-control__checkbox {
+.form-control-checkbox {
   color: var(--main-font-color);
   display: flex;
   justify-content: space-between;
@@ -38,7 +39,8 @@
   font-weight: 300;
 }
 
-.form-control input {
+.form-control input,
+textarea {
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
@@ -47,7 +49,7 @@
   color: var(--secondary-font-color);
   border-bottom: #d0ccd2 1px solid;
   border-radius: 4px 4px 0px 0px;
-  height: 56px;
+
   min-width: 288px;
   background-color: var(--form-input-color);
 }

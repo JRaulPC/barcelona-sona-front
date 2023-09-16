@@ -5,6 +5,7 @@ export interface ApiSpot {
   spotUse: string;
   openingYear: number;
   isVisited: boolean;
+  description: string;
 }
 
 export interface ApiSpots {
@@ -18,4 +19,5 @@ export interface Spot extends Omit<ApiSpot, "_id"> {
   spotUse: string;
   openingYear: number;
   isVisited: boolean;
+  description: string;
 }
