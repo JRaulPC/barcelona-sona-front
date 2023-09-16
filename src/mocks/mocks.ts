@@ -44,7 +44,7 @@ export const spotsMock: Spot[] = [
   },
 ];
 
-export const idToDelete = spotsMock[0].id;
+export const mockedId = spotsMock[0].id;
 
 export const formMock: Partial<Spot> = {
   name: "St. Felip Neri",

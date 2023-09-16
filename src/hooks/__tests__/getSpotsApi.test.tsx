@@ -43,7 +43,7 @@ describe("Given an userSpotsApi custom hook", () => {
   });
 
   describe("When a function getSpots is called with a request to an spots database and the server can't deliver the spots", () => {
-    test("Then it should show a 'Can't get spots right now' message on console", async () => {
+    test("Then it should show a 'No se pueden mostrar espacios' message on console", async () => {
       const user: Partial<User> = {
         displayName: "Emilio",
         getIdToken: vi.fn().mockResolvedValue("token"),
