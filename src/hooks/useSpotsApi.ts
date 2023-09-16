@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { ApiSpots, Spot } from "../types";
+import { ApiSpot, ApiSpots, Spot } from "../types";
 import axios from "axios";
 import { useIdToken } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
@@ -124,7 +124,40 @@ const useSpotsApi = () => {
     [dispatch, user],
   );
 
-  return { getSpots, deleteSpot, addSpot };
+  const getSpotById = useCallback(
+    async (id: string): Promise<Spot | undefined> => {
+      try {
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        const token = await user.getIdToken();
+        const requestConfig = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        const { data: apiSpot } = await axios.get<ApiSpot>(
+          `${apiUrl}/spots/${id}`,
+          requestConfig,
+        );
+
+        const spotById: Spot = { id: apiSpot._id, ...apiSpot };
+
+        return spotById;
+      } catch (error: unknown) {
+        const message = "No se pueden mostrar el espacio";
+
+        showFeedback(message, "error");
+
+        throw new Error(message);
+      }
+    },
+    [user],
+  );
+
+  return { getSpots, deleteSpot, addSpot, getSpotById };
 };
 
 export default useSpotsApi;

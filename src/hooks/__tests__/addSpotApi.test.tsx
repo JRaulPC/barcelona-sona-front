@@ -7,6 +7,8 @@ import { Provider } from "react-redux";
 
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 import { User } from "firebase/auth";
+import { errorHandlers } from "../../mocks/handlers";
+import { server } from "../../mocks/server";
 
 const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
   const store = setupStore({
@@ -41,6 +43,32 @@ describe("Given an userSpotsApi custom hook", () => {
       const newSpot = await addSpot(formMock);
 
       expect(newSpot).toStrictEqual(formMock);
+    });
+  });
+
+  describe("When a function addSpot is called with a request to an spots database and the server can't add the spot", () => {
+    test("Then it should show a 'No se puede crear el espacio' message on console", async () => {
+      server.resetHandlers(...errorHandlers);
+      const user: Partial<User> = {
+        displayName: "Emilio",
+        getIdToken: vi.fn().mockResolvedValue("token"),
+      };
+
+      const authStateHookMock: Partial<AuthStateHook> = [user as User];
+      auth.useIdToken = vi.fn().mockReturnValue([user]);
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      const expectedError = new Error("No se pudo añadir el espacio");
+
+      const {
+        result: {
+          current: { addSpot },
+        },
+      } = renderHook(() => useSpotsApi(), { wrapper });
+
+      const spots = addSpot(formMock);
+
+      expect(spots).rejects.toThrowError(expectedError);
     });
   });
 });
