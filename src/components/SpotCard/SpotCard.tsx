@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useSpotsApi from "../../hooks/useSpotsApi";
 import { useAppDispatch } from "../../store";
 import { deleteSpotActionCreator } from "../../store/spots/spotsSlice";
@@ -48,6 +49,7 @@ const SpotCard = ({
           <Button className="outlined-red" actionOnClick={deleteItem}>
             Eliminar
           </Button>
+          <Link to={`/detalle/${id}`}>Ver más</Link>
         </div>
       </div>
     </article>

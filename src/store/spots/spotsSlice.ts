@@ -4,6 +4,7 @@ import { Spot } from "../../types";
 
 const initialSpotsState: SpotsState = {
   spots: [],
+  selectedSpot: {} as Spot,
 };
 
 const spotsSlice = createSlice({
@@ -32,6 +33,14 @@ const spotsSlice = createSlice({
       ...currentSpotsState,
       spots: [...currentSpotsState.spots, action.payload],
     }),
+
+    loadSelectedSpot: (
+      currentSpotsState,
+      action: PayloadAction<Spot>,
+    ): SpotsState => ({
+      ...currentSpotsState,
+      selectedSpot: action.payload,
+    }),
   },
 });
 
@@ -41,4 +50,5 @@ export const {
   loadSpots: loadSpotsActionCreator,
   deleteSpot: deleteSpotActionCreator,
   addSpot: addsSpotActionCreator,
+  loadSelectedSpot: loadSelectedSpotActionCreator,
 } = spotsSlice.actions;

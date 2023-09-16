@@ -47,6 +47,7 @@ export const spotsMock: Spot[] = [
     description: "El Palau de la música es un espacio...",
   },
 ];
+export const spotMock = spotsMock[0];
 
 export const mockedId = spotsMock[0].id;
 
