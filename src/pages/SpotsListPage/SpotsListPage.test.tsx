@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { User } from "firebase/auth";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 import userEvent from "@testing-library/user-event";
+import { BrowserRouter } from "react-router-dom";
 
 const store = setupStore({
   spotsStore: {
@@ -28,9 +29,11 @@ describe("Given a Spots list page", () => {
       const expectedHeadingText = "Espacios";
 
       render(
-        <Provider store={store}>
-          <SpotsListPage />
-        </Provider>,
+        <BrowserRouter>
+          <Provider store={store}>
+            <SpotsListPage />
+          </Provider>
+        </BrowserRouter>,
       );
 
       const heading = screen.getByRole("heading", {
@@ -47,9 +50,11 @@ describe("Given a Spots list page", () => {
       const expectedCardHeading = "La modelo";
 
       render(
-        <Provider store={store}>
-          <SpotsListPage />
-        </Provider>,
+        <BrowserRouter>
+          <Provider store={store}>
+            <SpotsListPage />
+          </Provider>
+        </BrowserRouter>,
       );
 
       const deleteButton = await screen.getAllByRole("button", {
