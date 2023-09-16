@@ -3,7 +3,7 @@ import { formMock, spotsMock } from "../../mocks/mocks";
 import { setupStore } from "../../store";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import NewSpot from "./NewSpot";
+import NewSpotForm from "./NewSpotForm";
 import userEvent from "@testing-library/user-event";
 
 const store = setupStore({
@@ -16,15 +16,16 @@ const nameInputLabelText = "Espacio";
 const imageInputLabelText = "URL Imagen";
 const openingYearLabelText = "Año de creación";
 const spotUseInputLabelText = "Función del espacio";
+const spotDescriptionInputLabelText = "Descripción";
 const checkboxText = "Visitado";
 
-describe("Given a NewSpot component", () => {
+describe("Given a NewSpotForm component", () => {
   describe("When it's rendered", () => {
-    test("Then it should show the fields 'Espacio', 'URL Imagen', 'Año de creación', 'Función del espacio' and a checkbox with the text 'Visitado'", () => {
+    test("Then it should show the fields 'Espacio', 'URL Imagen', 'Año de creación', 'Función del espacio', 'Descripción and a checkbox with the text 'Visitado'", () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
-            <NewSpot />
+            <NewSpotForm />
           </Provider>
         </BrowserRouter>,
       );
@@ -34,12 +35,16 @@ describe("Given a NewSpot component", () => {
       const OpeningYearInput = screen.getByLabelText(openingYearLabelText);
       const spotUseInput = screen.getByLabelText(spotUseInputLabelText);
       const checkboxInput = screen.getByLabelText(checkboxText);
+      const descriptionInput = screen.getByLabelText(
+        spotDescriptionInputLabelText,
+      );
 
       expect(spotInput).toBeInTheDocument();
       expect(imageInput).toBeInTheDocument();
       expect(OpeningYearInput).toBeInTheDocument();
       expect(spotUseInput).toBeInTheDocument();
       expect(checkboxInput).toBeInTheDocument();
+      expect(descriptionInput).toBeInTheDocument();
     });
 
     describe("When an user types all the data for the spot 'St. Felip Neri'", () => {
@@ -47,7 +52,7 @@ describe("Given a NewSpot component", () => {
         render(
           <BrowserRouter>
             <Provider store={store}>
-              <NewSpot />
+              <NewSpotForm />
             </Provider>
           </BrowserRouter>,
         );
@@ -67,6 +72,9 @@ describe("Given a NewSpot component", () => {
         const isVisitedInput = screen.getByLabelText(
           checkboxText,
         ) as HTMLInputElement;
+        const descriptionInput = screen.getByLabelText(
+          spotDescriptionInputLabelText,
+        ) as HTMLInputElement;
 
         await userEvent.type(nameInput, formMock.name!);
         await userEvent.type(imageInput, formMock.imageUrl!);
@@ -75,12 +83,14 @@ describe("Given a NewSpot component", () => {
           formMock.openingYear!.toString(),
         );
         await userEvent.type(spotUseInput, formMock.spotUse!.toString());
+        await userEvent.type(descriptionInput, formMock.description!);
         await userEvent.click(isVisitedInput);
 
         expect(nameInput.value).toBe(formMock.name);
         expect(imageInput.value).toBe(formMock.imageUrl);
         expect(OpeningYearInput.value).toBe(formMock.openingYear?.toString());
         expect(spotUseInput.value).toBe(formMock.spotUse);
+        expect(descriptionInput.value).toBe(formMock.description);
         expect(isVisitedInput.value).toBe("on");
       });
 
@@ -89,7 +99,7 @@ describe("Given a NewSpot component", () => {
         render(
           <BrowserRouter>
             <Provider store={store}>
-              <NewSpot />
+              <NewSpotForm />
             </Provider>
           </BrowserRouter>,
         );
@@ -106,6 +116,9 @@ describe("Given a NewSpot component", () => {
         const spotUseInput = screen.getByLabelText(
           spotUseInputLabelText,
         ) as HTMLInputElement;
+        const descriptionInput = screen.getByLabelText(
+          spotDescriptionInputLabelText,
+        ) as HTMLInputElement;
 
         await userEvent.type(nameInput, formMock.name!);
         await userEvent.type(imageInput, formMock.imageUrl!);
@@ -113,6 +126,7 @@ describe("Given a NewSpot component", () => {
           OpeningYearInput,
           formMock.openingYear!.toString(),
         );
+        await userEvent.type(descriptionInput, formMock.description!);
         await userEvent.type(spotUseInput, formMock.spotUse!.toString());
 
         const createButton = screen.getByRole("button", { name: buttonText });

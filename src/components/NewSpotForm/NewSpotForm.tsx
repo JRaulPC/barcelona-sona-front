@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Spot } from "../../types";
 import Button from "../Button/Button";
-import "./NewSpot.css";
 import useSpotsApi from "../../hooks/useSpotsApi";
 import { useAppDispatch } from "../../store";
 import { addsSpotActionCreator } from "../../store/spots/spotsSlice";
 import { useNavigate } from "react-router-dom";
 import paths from "../../paths/paths";
+import "./NewSpotForm.css";
 
-const NewSpot = (): React.ReactElement => {
+const NewSpotForm = (): React.ReactElement => {
   const [disabled, setDisabled] = useState(true);
   const [newSpot, setNewSpot] = useState<Partial<Spot>>({
     name: "",
@@ -16,24 +16,33 @@ const NewSpot = (): React.ReactElement => {
     spotUse: "",
     openingYear: 0,
     isVisited: false,
+    description: "",
   });
   const dispatch = useAppDispatch();
   const { addSpot } = useSpotsApi();
 
-  const changeNewSpot = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     setNewSpot((newSpot) => ({
       ...newSpot,
       [event.target.id]: event.target.value,
     }));
   };
 
-  const { imageUrl, name, openingYear, spotUse } = newSpot;
+  const { imageUrl, name, openingYear, spotUse, description } = newSpot;
 
   useEffect(() => {
-    name !== "" && imageUrl !== "" && openingYear !== 0 && spotUse !== ""
+    name !== "" &&
+    imageUrl !== "" &&
+    openingYear !== 0 &&
+    spotUse !== "" &&
+    description !== ""
       ? setDisabled(false)
       : setDisabled(true);
-  }, [name, imageUrl, openingYear, spotUse]);
+  }, [name, imageUrl, openingYear, spotUse, description]);
 
   const navigate = useNavigate();
 
@@ -55,7 +64,7 @@ const NewSpot = (): React.ReactElement => {
           id="name"
           maxLength={100}
           value={newSpot.name}
-          onChange={changeNewSpot}
+          onChange={handleChange}
         />
       </div>
       <div className="form-control">
@@ -64,7 +73,7 @@ const NewSpot = (): React.ReactElement => {
           type="text"
           id="imageUrl"
           value={newSpot.imageUrl}
-          onChange={changeNewSpot}
+          onChange={handleChange}
         />
       </div>
       <div className="form-control">
@@ -75,7 +84,7 @@ const NewSpot = (): React.ReactElement => {
           min="1300"
           max="2023"
           maxLength={4}
-          onChange={changeNewSpot}
+          onChange={handleChange}
         />
       </div>
       <div className="form-control">
@@ -85,12 +94,28 @@ const NewSpot = (): React.ReactElement => {
           maxLength={50}
           id="spotUse"
           value={newSpot.spotUse}
-          onChange={changeNewSpot}
+          onChange={handleChange}
         />
       </div>
-      <div className="form-control__checkbox">
+      <div className="form-control">
+        <label htmlFor="description">Descripción</label>
+        <textarea
+          id="description"
+          name="description"
+          rows={3}
+          cols={10}
+          value={newSpot.description}
+          onChange={handleChange}
+        ></textarea>
+      </div>
+      <div className="form-control-checkbox form-control-textarea">
         <label htmlFor="isVisited">Visitado</label>
-        <input className="form-control-check" type="checkbox" id="isVisited" />
+        <input
+          className="form-control-check"
+          type="checkbox"
+          id="isVisited"
+          onChange={handleChange}
+        />
       </div>
       <div className="form-spot__button">
         <Button
@@ -105,4 +130,4 @@ const NewSpot = (): React.ReactElement => {
   );
 };
 
-export default NewSpot;
+export default NewSpotForm;
