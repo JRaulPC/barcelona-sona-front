@@ -13,7 +13,7 @@ vi.mock("firebase/auth", async () => {
 });
 
 describe("Given a HomePage page", () => {
-  describe("When is rendered", () => {
+  describe("When its rendered", () => {
     test("Then it should show a heading with the text 'Consulta que espacios tienen su acústica registrda o añade el tuyo.'", () => {
       const headerText =
         "Consulta que espacios tienen su acústica registrada o añade el tuyo.";

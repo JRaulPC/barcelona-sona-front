@@ -1,13 +1,13 @@
+import { renderHook } from "@testing-library/react";
 import { User } from "firebase/auth";
 import { PropsWithChildren } from "react";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 import { Provider } from "react-redux";
+import { errorHandlers } from "../../mocks/handlers";
+import { mockedId, spotMock } from "../../mocks/mocks";
+import { server } from "../../mocks/server";
 import { setupStore } from "../../store";
 import useSpotsApi from "../useSpotsApi";
-import { renderHook } from "@testing-library/react";
-import { mockedId, spotsMock } from "../../mocks/mocks";
-import { server } from "../../mocks/server";
-import { errorHandlers } from "../../mocks/handlers";
 
 const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
   const store = setupStore({
@@ -36,9 +36,9 @@ describe("Given an userSpotsApi custom hook", () => {
         },
       } = renderHook(() => useSpotsApi(), { wrapper });
 
-      const spot = await getSpotById(mockedId);
+      const spot = await getSpotById(spotMock.id);
 
-      expect(spot).toStrictEqual(spotsMock[0]);
+      expect(spot).toStrictEqual(spotMock);
     });
   });
 

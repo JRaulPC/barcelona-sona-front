@@ -7,3 +7,7 @@ export const LazySpotsListPage = lazy(
 );
 
 export const LazyPage404 = lazy(() => import("../Page404/Page404"));
+
+export const LazyDetailPage = lazy(
+  () => import("../SpotDetailPage/SpotDetailPage"),
+);
