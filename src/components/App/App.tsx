@@ -13,6 +13,7 @@ import Feedback from "../Feedback/Feedback";
 import Loader from "../Loader/Loader";
 import "react-toastify/dist/ReactToastify.css";
 import {
+  LazyDetailPage,
   LazyNewSpotPage,
   LazyPage404,
   LazySpotsListPage,
@@ -50,6 +51,17 @@ const App = (): React.ReactElement => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path={`${paths.spotDetail}/:id`}
+            element={
+              <ProtectedRoute>
+                <Suspense>
+                  <LazyDetailPage />
+                </Suspense>
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="*"
             element={
