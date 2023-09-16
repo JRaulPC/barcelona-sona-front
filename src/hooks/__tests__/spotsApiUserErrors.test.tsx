@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { setupStore } from "../../store";
 import useSpotsApi from "../useSpotsApi";
-import { formMock, idToDelete } from "../../mocks/mocks";
+import { formMock, mockedId } from "../../mocks/mocks";
 
 const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
   const store = setupStore({
@@ -41,7 +41,7 @@ describe("Given an userSpotsApi custom hook", () => {
         },
       } = renderHook(() => useSpotsApi(), { wrapper });
 
-      const message = deleteSpot(idToDelete);
+      const message = deleteSpot(mockedId);
 
       expect(message).rejects.toThrowError(expectedError);
     });
@@ -58,6 +58,21 @@ describe("Given an userSpotsApi custom hook", () => {
       } = renderHook(() => useSpotsApi(), { wrapper });
 
       const message = addSpot(formMock);
+
+      expect(message).rejects.toThrowError(expectedError);
+    });
+  });
+  describe("When a function getSpotById is called without a valir user", () => {
+    test("Then it should show the error 'No se puede mostrar el espacio' on console", () => {
+      const expectedError = new Error("No se puede mostrar el espacio");
+
+      const {
+        result: {
+          current: { getSpotById },
+        },
+      } = renderHook(() => useSpotsApi(), { wrapper });
+
+      const message = getSpotById(mockedId);
 
       expect(message).rejects.toThrowError(expectedError);
     });

@@ -147,7 +147,7 @@ const useSpotsApi = () => {
 
         return spotById;
       } catch (error: unknown) {
-        const message = "No se pueden mostrar el espacio";
+        const message = "No se puede mostrar el espacio";
 
         showFeedback(message, "error");
 
