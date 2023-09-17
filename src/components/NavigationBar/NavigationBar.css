@@ -49,11 +49,12 @@
 
 .navigation-bar__exit-button {
   color: var(--secondary-font-color);
+  margin-top: 4px;
   width: 96px;
   height: 52px;
   display: flex;
   flex: 1;
-  gap: 7px;
+  gap: 8px;
   flex-direction: column;
   align-items: center;
   justify-content: center;

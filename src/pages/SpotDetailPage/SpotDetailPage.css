@@ -1,0 +1,52 @@
+.spot-detail-page {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding-bottom: 130px;
+}
+
+.spot-detail-page__title {
+  color: var(--main-font-color);
+  font-family: var(--main-font), system-ui;
+  font-size: 1.25rem;
+  letter-spacing: -1.1px;
+  font-weight: 400;
+}
+
+.spot-detail-page__properties {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--text-properties-color);
+  font-family: var(--text-font), system-ui;
+  font-size: 0.875;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+}
+
+.spot-detail-page__description {
+  width: 288px;
+}
+
+.spot-detail-page__description-text {
+  margin: 0;
+  color: var(--text-properties-color);
+  font-family: var(--text-font), system-ui;
+  font-weight: 200;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 200;
+  line-height: normal;
+}
+
+.separator {
+  width: 100%;
+  margin: 0;
+}
+
+.button-danger--margin-top {
+  margin-top: 8px;
+}

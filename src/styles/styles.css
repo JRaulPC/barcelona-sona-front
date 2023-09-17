@@ -1,8 +1,8 @@
 :root {
-  --main-bg-color: #282828;
+  --main-bg-color: #171515;
   --nav-bg-color: #211f26;
   --header-bg-color: #000000;
-  --card-bg: #1d1b20;
+  --card-bg: #242328;
   --main-font-color: #e1e1e1;
   --secondary-font-color: #cac4d0;
   --text-properties-color: #afafaf;
@@ -55,4 +55,57 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+}
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+.button-danger {
+  width: 100%;
+  max-width: 288px;
+  height: 40px;
+  border: solid 1px var(--button-soft-red);
+  border-radius: 100px;
+  color: var(--button-soft-red);
+}
+
+.button-primary {
+  width: 100%;
+  max-width: 288px;
+  height: 40px;
+  display: flex;
+  padding: 24px;
+  align-items: center;
+  gap: 24px;
+  justify-content: center;
+  border-radius: 38px;
+  border: 1px solid var(--login-button);
+  line-height: 18px;
+  font-size: 1.1rem;
+  color: white;
+}
+
+.spot-checkbox {
+  color: var(--main-font-color);
+  display: flex;
+  justify-content: space-between;
+  height: 48px;
+  width: 100%;
+  min-width: 256px;
+  padding: 16px;
+  background-color: var(--main-checkbox-color);
+  border-radius: 8px;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 24px; /* 171.429% */
+  letter-spacing: 0.5px;
+}
+
+.spot-image {
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px 12px 0px 0px;
 }

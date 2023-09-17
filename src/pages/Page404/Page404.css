@@ -15,8 +15,9 @@
 }
 
 .page-404__title {
+  padding: 16px;
   text-align: center;
-  font-size: 24px;
+  font-size: 4.5rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -28,17 +29,4 @@
   font-size: 1rem;
   width: 227px;
   text-align: center;
-}
-
-.outline-white-link {
-  display: flex;
-  width: 256px;
-  height: 40px;
-  border: 1px solid var(--main-font-color);
-  color: var(--main-font-color);
-  border-radius: 100px;
-  padding: 10px 24px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
 }
