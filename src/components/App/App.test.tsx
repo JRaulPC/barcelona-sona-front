@@ -4,20 +4,30 @@ import { User } from "firebase/auth";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 import { Provider } from "react-redux";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
-import { formHandler } from "../../mocks/handlers";
-import { formMock, spotsMock } from "../../mocks/mocks";
+import { deletedSpotHandlers, formHandler } from "../../mocks/handlers";
+import { formMock, spotMock, spotsMock } from "../../mocks/mocks";
 import { server } from "../../mocks/server";
+import paths from "../../paths/paths";
 import { setupStore } from "../../store";
 import App from "./App";
 
 const store = setupStore({
   spotsStore: {
     spots: spotsMock,
+    selectedSpot: spotMock,
   },
   uiStore: {
     isLoading: false,
   },
 });
+
+const user: Partial<User> = {
+  displayName: "Emilio",
+  getIdToken: vi.fn().mockResolvedValue("token"),
+};
+const authStateHookMock: Partial<AuthStateHook> = [user as User];
+auth.useIdToken = vi.fn().mockReturnValue([user]);
+auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
 describe("Given an App component", () => {
   describe("When it is rendered", () => {
@@ -40,24 +50,24 @@ describe("Given an App component", () => {
 
       expect(heading).toBeInTheDocument();
     });
-  });
 
-  test("And no navigation bar has to be shown.", () => {
-    const authStateHookMock: Partial<AuthStateHook> = [null as null];
-    auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
-    const listRoute = "/espacios";
+    test("And no navigation bar has to be shown.", () => {
+      const authStateHookMock: Partial<AuthStateHook> = [null as null];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+      const listRoute = "/espacios";
 
-    render(
-      <MemoryRouter initialEntries={[listRoute]}>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </MemoryRouter>,
-    );
+      render(
+        <MemoryRouter initialEntries={[listRoute]}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
 
-    const navBar = screen.queryByRole("navigation");
+      const navBar = screen.queryByRole("navigation");
 
-    expect(navBar).not.toBeInTheDocument();
+      expect(navBar).not.toBeInTheDocument();
+    });
   });
 
   describe("When a Page 404 is rendered and the 'Consulta que espacios tienen su acústica registrada o añade el tuyo.' is clicked", () => {
@@ -91,8 +101,8 @@ describe("Given an App component", () => {
     });
   });
 
-  describe("When a NewSpot page is rendered the form is filled and the button 'Añadir espacio' is clicked", () => {
-    test("Then is should redirects the user to the list page", async () => {
+  describe("When a page with the text 'Añade un nuevo espacio' as a heading is shown and and the user fills the form and clicks the button with the text 'Añadir espacio' ", () => {
+    test("Then is should show a page with the text 'Espacios' as a heading and a new card in the spots list that has the text 'St. Felip Neri' as a heading  ", async () => {
       server.resetHandlers(...formHandler);
 
       const user: Partial<User> = {
@@ -150,6 +160,114 @@ describe("Given an App component", () => {
 
         expect(cardHeading).toBeInTheDocument();
       });
+    });
+  });
+
+  describe("When a list of cards with spots names as headings are shown ", () => {
+    test("Then the card with the heading 'La modelo' should have a button with a link to path '/detalle/1' ", async () => {
+      const linkText = "Ver más";
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </BrowserRouter>,
+      );
+
+      const link = await screen.findAllByRole("link", { name: linkText });
+
+      await userEvent.click(link[0]);
+
+      expect(link[0]).toHaveAttribute("href", "/detalle/1");
+    });
+  });
+
+  describe("When the user clicks the 'Ver más' link of 'La modelo' card'", () => {
+    test("Then it should show a detail page with the spot 'La modelo' as a heading", async () => {
+      const linkText = "Ver más";
+      const headingText = spotMock.name;
+      const detailPath = "/detalle/1";
+
+      render(
+        <MemoryRouter
+          initialEntries={[paths.spots, detailPath]}
+          initialIndex={0}
+        >
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const link = await screen.findAllByRole("link", { name: linkText });
+
+      await userEvent.click(link[0]);
+
+      const heading = await screen.findByRole("heading", {
+        name: headingText,
+      });
+
+      expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When the a page with the heading 'La modelo' shown and the button with the text 'Eliminar' is clicked", () => {
+    const buttonText = "Eliminar";
+    const headingText = "Espacios";
+    const detailPath = "/detalle/1";
+
+    test("Then a page with the text 'Espacios' as a heading has to be shown", async () => {
+      render(
+        <MemoryRouter
+          initialEntries={[paths.spots, detailPath]}
+          initialIndex={1}
+        >
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const deleteButton = await screen.findByRole("button", {
+        name: buttonText,
+      });
+
+      await userEvent.click(deleteButton);
+
+      const heading = await screen.findByRole("heading", {
+        name: headingText,
+      });
+
+      expect(heading).toBeInTheDocument();
+    });
+
+    test("Then the card with the heading 'La modelo' does not have to be shown", async () => {
+      server.resetHandlers(...deletedSpotHandlers);
+      const cardHeadingText = spotMock.name;
+
+      render(
+        <MemoryRouter
+          initialEntries={[paths.spots, detailPath]}
+          initialIndex={1}
+        >
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const deleteButton = await screen.findByRole("button", {
+        name: buttonText,
+      });
+
+      await userEvent.click(deleteButton);
+
+      const heading = screen.queryByRole("heading", {
+        name: cardHeadingText,
+      });
+
+      expect(heading).not.toBeInTheDocument();
     });
   });
 });
