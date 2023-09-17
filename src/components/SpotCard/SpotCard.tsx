@@ -39,17 +39,19 @@ const SpotCard = ({
           <li>{spotUse}</li>
           <li>{openingYear}</li>
         </ul>
-        <div className="spot-card__checkbox">
+        <div className="spot-checkbox">
           <label htmlFor={`visited${name?.replace(/\s/g, "")}`}>
             Lo has visitado?
           </label>
           <input type="checkbox" id={`visited${name?.replace(/\s/g, "")}`} />
         </div>
-        <div>
-          <Button className="outlined-red" actionOnClick={deleteItem}>
+        <div className="spot-card__butons">
+          <Button className="button-danger" actionOnClick={deleteItem}>
             Eliminar
           </Button>
-          <Link to={`/detalle/${id}`}>Ver más</Link>
+          <Link className="spot-card__link" to={`/detalle/${id}`}>
+            Ver más
+          </Link>
         </div>
       </div>
     </article>
