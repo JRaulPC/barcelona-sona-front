@@ -86,6 +86,19 @@ export const apiSpot = {
   },
 };
 
+export const toggledApiSpotMock = {
+  spot: {
+    id: "1",
+    name: "La modelo",
+    imageUrl:
+      "https://s2.qwant.com/thumbr/0x380/c/5/0a5db7bbec61444fb5119af51a87c45fd74dbaf7aac051669d6f06bb573b10/la-modelo-prison-hallway.jpg?u=https%3A%2F%2Ftheinternationalangle.com%2Fwp-content%2Fuploads%2F2018%2F01%2Fla-modelo-prison-hallway.jpg&q=0&b=1&p=0&a=0",
+    spotUse: "Carcel",
+    openingYear: 1910,
+    isVisited: true,
+    description: "La modelo es un espacio...",
+  },
+};
+
 export const spotsMock: Spot[] = [
   {
     id: "1",
@@ -108,9 +121,7 @@ export const spotsMock: Spot[] = [
     description: "El Palau de la música es un espacio...",
   },
 ];
-
 export const spotMock = spotsMock[0];
-
 export const mockedId = spotsMock[0].id;
 
 export const formMock: Partial<Spot> = {
