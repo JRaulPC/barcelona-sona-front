@@ -158,7 +158,47 @@ const useSpotsApi = () => {
     [user],
   );
 
-  return { getSpots, deleteSpot, addSpot, getSpotById };
+  const toogleIsVisited = useCallback(
+    async (
+      id: string,
+      spotToggle: Pick<Spot, "isVisited">,
+    ): Promise<Spot | undefined> => {
+      try {
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        const token = await user.getIdToken();
+        const requestConfig = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        const { isVisited } = spotToggle;
+
+        const { data: apiSpot } = await axios.patch(
+          `${apiUrl}/spots/${id}`,
+          { isVisited },
+          requestConfig,
+        );
+
+        const updatedSpot = { id: apiSpot.spot._id, ...apiSpot.spot };
+        delete updatedSpot._id;
+
+        return updatedSpot;
+      } catch (error: unknown) {
+        const message = "No se puede actualizar el espacio";
+
+        showFeedback(message, "error");
+
+        throw new Error(message);
+      }
+    },
+    [user],
+  );
+
+  return { getSpots, deleteSpot, addSpot, getSpotById, toogleIsVisited };
 };
 
 export default useSpotsApi;
