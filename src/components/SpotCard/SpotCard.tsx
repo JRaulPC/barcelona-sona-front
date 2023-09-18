@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import useSpotsApi from "../../hooks/useSpotsApi";
 import { useAppDispatch } from "../../store";
-import { deleteSpotActionCreator } from "../../store/spots/spotsSlice";
+import {
+  deleteSpotActionCreator,
+  toggleIsVisitedActionCreator,
+} from "../../store/spots/spotsSlice";
 import { Spot } from "../../types";
 import Button from "../Button/Button";
 import "./SpotCard.css";
@@ -12,15 +16,23 @@ interface SpotCardProps {
 }
 
 const SpotCard = ({
-  spot: { imageUrl, name, openingYear, spotUse, id },
+  spot: { imageUrl, name, openingYear, spotUse, id, isVisited },
+  spot,
   listPosition,
 }: SpotCardProps): React.ReactElement => {
-  const { deleteSpot } = useSpotsApi();
+  const [isChecked, setIsChecked] = useState(isVisited);
+  const { deleteSpot, toogleIsVisited } = useSpotsApi();
   const dispatch = useAppDispatch();
 
   const deleteItem = async () => {
     await deleteSpot(id!);
     dispatch(deleteSpotActionCreator(id!));
+  };
+
+  const handeOnchange = async () => {
+    const updatedSpot = await toogleIsVisited(id!, spot as Spot);
+    dispatch(toggleIsVisitedActionCreator(updatedSpot as Spot));
+    setIsChecked(!isChecked);
   };
 
   return (
@@ -43,7 +55,12 @@ const SpotCard = ({
           <label htmlFor={`visited${name?.replace(/\s/g, "")}`}>
             Lo has visitado?
           </label>
-          <input type="checkbox" id={`visited${name?.replace(/\s/g, "")}`} />
+          <input
+            type="checkbox"
+            id={`visited${name?.replace(/\s/g, "")}`}
+            onChange={handeOnchange}
+            checked={isChecked}
+          />
         </div>
         <div className="spot-card__butons">
           <Button className="button-danger" actionOnClick={deleteItem}>

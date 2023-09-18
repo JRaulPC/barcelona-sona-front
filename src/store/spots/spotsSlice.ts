@@ -41,6 +41,16 @@ const spotsSlice = createSlice({
       ...currentSpotsState,
       selectedSpot: action.payload,
     }),
+
+    toggleIsVisited: (
+      currentSpotsState,
+      action: PayloadAction<Spot>,
+    ): SpotsState => ({
+      ...currentSpotsState,
+      spots: currentSpotsState.spots.map<Spot>((spot) =>
+        spot.id === action.payload.id ? { ...action.payload } : { ...spot },
+      ),
+    }),
   },
 });
 
@@ -51,4 +61,5 @@ export const {
   deleteSpot: deleteSpotActionCreator,
   addSpot: addsSpotActionCreator,
   loadSelectedSpot: loadSelectedSpotActionCreator,
+  toggleIsVisited: toggleIsVisitedActionCreator,
 } = spotsSlice.actions;
