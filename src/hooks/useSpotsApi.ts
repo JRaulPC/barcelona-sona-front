@@ -161,7 +161,7 @@ const useSpotsApi = () => {
   const toogleIsVisited = useCallback(
     async (
       id: string,
-      spotToggle: Pick<Spot, "isVisited">,
+      spotIsVisited: Pick<Spot, "isVisited">,
     ): Promise<Spot | undefined> => {
       try {
         if (!user) {
@@ -175,7 +175,7 @@ const useSpotsApi = () => {
           },
         };
 
-        const { isVisited } = spotToggle;
+        const { isVisited } = spotIsVisited;
 
         const { data: apiSpot } = await axios.patch(
           `${apiUrl}/spots/${id}`,

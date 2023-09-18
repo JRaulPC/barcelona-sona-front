@@ -8,6 +8,7 @@ import {
   spotMock,
   spotsMock,
   apiSpotsMockDeletedSpot,
+  toggledApiSpotMock,
 } from "./mocks";
 
 export const handlers = [
@@ -16,6 +17,9 @@ export const handlers = [
   }),
   rest.get(`${apiUrl}/spots/${spotMock.id}`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json(apiSpot));
+  }),
+  rest.patch(`${apiUrl}/spots/${spotMock.id}`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(toggledApiSpotMock));
   }),
   rest.delete(`${apiUrl}/spots/${spotsMock[0].id}`, (_req, res, ctx) => {
     return res(
@@ -52,6 +56,9 @@ export const errorHandlers = [
   rest.get(`${apiUrl}/spots/${spotsMock[0].id}`, (_req, res, ctx) => {
     return res(ctx.status(404, "No se puede mostrar el espacio"));
   }),
+  rest.patch(`${apiUrl}/spots/${spotMock.id}`, (_req, res, ctx) => {
+    return res(ctx.status(500, "No se puede actualizar el espacio"));
+  }),
   rest.delete(`${apiUrl}/spots/${spotsMock[0].id}`, (_req, res, ctx) => {
     return res(ctx.status(404, "No se puede borrar el espacio"));
   }),
@@ -64,7 +71,6 @@ export const formHandler = [
   rest.get(`${apiUrl}/spots`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json(apiSpotsMockAddedWithForm));
   }),
-
   rest.post(`${apiUrl}/spots`, (_req, res, ctx) => {
     return res(ctx.status(201), ctx.json(formMock));
   }),
