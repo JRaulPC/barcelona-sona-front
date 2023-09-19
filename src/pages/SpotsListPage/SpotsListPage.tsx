@@ -7,20 +7,26 @@ import useSpotsApi from "../../hooks/useSpotsApi";
 import { useAppDispatch } from "../../store";
 import { loadSpotsActionCreator } from "../../store/spots/spotsSlice";
 import "./SpotsListPage.css";
-import cacheImage from "../../components/PreloadImage/PreloadImages";
 
 const SpotsListPage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
   const dispatch = useAppDispatch();
   const { getSpots } = useSpotsApi();
 
+  const preloadListFirstImage = (imageUrl: string) => {
+    const preloadImageLink = document.createElement("link");
+    preloadImageLink.href = imageUrl;
+    preloadImageLink.rel = "preload";
+    preloadImageLink.as = "image";
+    document.head.appendChild(preloadImageLink);
+  };
+
   useEffect(() => {
     if (user) {
       (async () => {
         const spots = await getSpots();
         dispatch(loadSpotsActionCreator(spots!));
-
-        cacheImage(spots![0].imageUrl);
+        preloadListFirstImage(spots![0].imageUrl);
       })();
     }
   }, [dispatch, getSpots, user]);
