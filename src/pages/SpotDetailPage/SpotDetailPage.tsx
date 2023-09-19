@@ -56,7 +56,7 @@ const SpotDetailPage = (): React.ReactElement => {
   return (
     <>
       <Helmet>
-        <title>{`Página de detalle de ${spot.name}`}</title>
+        <title>{`${spot.name} Barcelona Sona`}</title>
         <meta
           name="description"
           content={`En esta página puedes ver informacion sobre ${spot.name} `}
@@ -92,7 +92,7 @@ const SpotDetailPage = (): React.ReactElement => {
         </div>
         <Button
           actionOnClick={deleteItem}
-          className="button-danger  button-danger--margin-top"
+          className="button-primary--danger  button--danger--margin-top"
         >
           Eliminar
         </Button>
