@@ -1,10 +1,10 @@
-import "./HomePage.css";
+import { signInWithPopup } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Navigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { auth, gitHubAuthProvider } from "../../firebase";
-import { signInWithPopup } from "firebase/auth";
-import { Navigate } from "react-router-dom";
 import paths from "../../paths/paths";
-import { useAuthState } from "react-firebase-hooks/auth";
+import "./HomePage.css";
 
 const HomePage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
