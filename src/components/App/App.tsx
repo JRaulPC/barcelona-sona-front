@@ -74,7 +74,7 @@ const App = (): React.ReactElement => {
 
         {isLoading && <Loader />}
 
-        {user && !isLoading && <NavigationBar />}
+        {user && <NavigationBar />}
       </div>
     </>
   );
