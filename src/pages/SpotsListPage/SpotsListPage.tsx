@@ -7,6 +7,7 @@ import useSpotsApi from "../../hooks/useSpotsApi";
 import { useAppDispatch } from "../../store";
 import { loadSpotsActionCreator } from "../../store/spots/spotsSlice";
 import "./SpotsListPage.css";
+import cacheImage from "../../components/PreloadImage/PreloadImages";
 
 const SpotsListPage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -18,6 +19,8 @@ const SpotsListPage = (): React.ReactElement => {
       (async () => {
         const spots = await getSpots();
         dispatch(loadSpotsActionCreator(spots!));
+
+        cacheImage(spots![0].imageUrl);
       })();
     }
   }, [dispatch, getSpots, user]);
@@ -25,11 +28,12 @@ const SpotsListPage = (): React.ReactElement => {
   return (
     <>
       <Helmet>
-        <title>Listado de espacios</title>
+        <title>Espacios - Barcelona Sona</title>
         <meta
           name="description"
           content="En esta página puedes consultar que espacios estan actualmente registrados"
         />
+        <link rel="preload" href="" />
       </Helmet>
       <main className="spots-page">
         <h2 className="spots-page__title">Espacios</h2>

@@ -63,7 +63,7 @@ const SpotCard = ({
           />
         </div>
         <div className="spot-card__butons">
-          <Button className="button-danger" actionOnClick={deleteItem}>
+          <Button className="button-primary--danger" actionOnClick={deleteItem}>
             Eliminar
           </Button>
           <Link className="spot-card__link" to={`/detalle/${id}`}>

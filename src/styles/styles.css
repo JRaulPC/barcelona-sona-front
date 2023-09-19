@@ -4,7 +4,7 @@
   --header-bg-color: #000000;
   --card-bg: #242328;
   --main-font-color: #e1e1e1;
-  --new-spot-title-font-color: #cac4d0;
+  --new-spot-title-font-color: #ffffff;
   --secondary-font-color: #cac4d0;
   --text-properties-color: #afafaf;
   --ui-selected-color: #4a4458;
@@ -41,7 +41,12 @@ li {
   padding: 0;
 }
 
-input,
+input {
+  background: none;
+  border: none;
+  font: inherit;
+}
+
 button {
   background: none;
   border: none;
@@ -63,7 +68,7 @@ h3 {
   margin: 0;
 }
 
-.button-danger {
+.button-primary--danger {
   width: 100%;
   max-width: 288px;
   height: 40px;
