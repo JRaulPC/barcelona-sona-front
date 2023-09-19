@@ -89,7 +89,7 @@ describe("Given an userSpotsApi custom hook", () => {
         },
       } = renderHook(() => useSpotsApi(), { wrapper });
 
-      const message = toogleIsVisited(spotMock.id, spotMock);
+      const message = toogleIsVisited(spotMock.id, true);
 
       expect(message).rejects.toThrowError(expectedError);
     });

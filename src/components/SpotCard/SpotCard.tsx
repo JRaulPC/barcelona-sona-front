@@ -17,7 +17,6 @@ interface SpotCardProps {
 
 const SpotCard = ({
   spot: { imageUrl, name, openingYear, spotUse, id, isVisited },
-  spot,
   listPosition,
 }: SpotCardProps): React.ReactElement => {
   const [isChecked, setIsChecked] = useState(isVisited);
@@ -30,7 +29,7 @@ const SpotCard = ({
   };
 
   const handeOnchange = async () => {
-    const updatedSpot = await toogleIsVisited(id!, spot as Spot);
+    const updatedSpot = await toogleIsVisited(id!, isVisited!);
     dispatch(toggleIsVisitedActionCreator(updatedSpot as Spot));
     setIsChecked(!isChecked);
   };
@@ -38,6 +37,8 @@ const SpotCard = ({
   return (
     <article className="spot-card">
       <img
+        // eslint-disable-next-line react/no-unknown-property
+        fetchpriority="high"
         className="spot-card__image"
         src={imageUrl}
         alt={`El espacio ${name}`}

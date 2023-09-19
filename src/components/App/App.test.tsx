@@ -137,9 +137,9 @@ describe("Given an App component", () => {
         openingYearLabelText,
       );
       const spotUseInput = await screen.findByLabelText(spotUseInputLabelText);
-      const descriptionInput = screen.getByLabelText(
+      const descriptionInput = await screen.getByLabelText(
         spotDescriptionInputLabelText,
-      ) as HTMLInputElement;
+      );
 
       await userEvent.type(nameInput, formMock.name!);
       await userEvent.type(imageInput, formMock.imageUrl!);

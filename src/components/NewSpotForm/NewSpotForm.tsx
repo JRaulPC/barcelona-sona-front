@@ -18,6 +18,7 @@ const NewSpotForm = (): React.ReactElement => {
     isVisited: false,
     description: "",
   });
+
   const dispatch = useAppDispatch();
   const { addSpot } = useSpotsApi();
 
@@ -32,17 +33,13 @@ const NewSpotForm = (): React.ReactElement => {
     }));
   };
 
-  const { imageUrl, name, openingYear, spotUse, description } = newSpot;
-
   useEffect(() => {
-    name !== "" &&
-    imageUrl !== "" &&
-    openingYear !== 0 &&
-    spotUse !== "" &&
-    description !== ""
-      ? setDisabled(false)
-      : setDisabled(true);
-  }, [name, imageUrl, openingYear, spotUse, description]);
+    setDisabled(
+      Object.values(newSpot).every((value) => {
+        return Boolean(value);
+      }),
+    );
+  }, [newSpot]);
 
   const navigate = useNavigate();
 

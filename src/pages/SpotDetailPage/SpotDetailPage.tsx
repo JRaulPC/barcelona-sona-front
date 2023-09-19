@@ -48,7 +48,7 @@ const SpotDetailPage = (): React.ReactElement => {
   };
 
   const handeOnchange = async () => {
-    const updatedSpot = await toogleIsVisited(id!, spot);
+    const updatedSpot = await toogleIsVisited(id!, isVisited);
     dispatch(toggleIsVisitedActionCreator(updatedSpot as Spot));
     setIsChecked(!isChecked);
   };

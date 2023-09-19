@@ -1,3 +1,4 @@
-.error {
-  font-family: var(--main-font);
+.Toastify__toast-theme--dark {
+  background: var(--toastify-color-dark);
+  color: var(--main-font-color);
 }

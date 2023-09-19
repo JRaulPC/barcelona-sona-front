@@ -47,11 +47,10 @@ const spotsSlice = createSlice({
       action: PayloadAction<Spot>,
     ): SpotsState => ({
       ...currentSpotsState,
-      spots: currentSpotsState.spots.map<Spot>((spot) => ({
-        ...spot,
-        isVisited:
-          spot.id === action.payload.id ? !spot.isVisited : spot.isVisited,
-      })),
+      selectedSpot: action.payload,
+      spots: currentSpotsState.spots.map((spot) =>
+        spot.id === action.payload.id ? action.payload : spot,
+      ),
     }),
   },
 });

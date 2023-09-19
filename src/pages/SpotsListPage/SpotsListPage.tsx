@@ -18,6 +18,7 @@ const SpotsListPage = (): React.ReactElement => {
     preloadImageLink.href = imageUrl;
     preloadImageLink.rel = "preload";
     preloadImageLink.as = "image";
+
     document.head.appendChild(preloadImageLink);
   };
 
