@@ -36,7 +36,7 @@ describe("Given an userSpotsApi custom hook", () => {
         },
       } = renderHook(() => useSpotsApi(), { wrapper });
 
-      const spotToUpdate = await toogleIsVisited(spotMock.id, spotMock);
+      const spotToUpdate = await toogleIsVisited(spotMock.id, true);
 
       expect(spotToUpdate).toEqual(toggledApiSpotMock.spot);
     });
@@ -52,7 +52,7 @@ describe("Given an userSpotsApi custom hook", () => {
           },
         } = renderHook(() => useSpotsApi(), { wrapper });
 
-        const spotToUpdate = toogleIsVisited(spotMock.id, spotMock);
+        const spotToUpdate = toogleIsVisited(spotMock.id, false);
 
         expect(spotToUpdate).rejects.toThrowError(expectedError);
       });

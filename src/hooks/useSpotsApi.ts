@@ -159,10 +159,7 @@ const useSpotsApi = () => {
   );
 
   const toogleIsVisited = useCallback(
-    async (
-      id: string,
-      spotIsVisited: Pick<Spot, "isVisited">,
-    ): Promise<Spot | undefined> => {
+    async (id: string, isVisited: boolean): Promise<Spot | undefined> => {
       try {
         if (!user) {
           throw new Error("User not found");
@@ -172,14 +169,15 @@ const useSpotsApi = () => {
         const requestConfig = {
           headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "text/plain",
           },
         };
 
-        const { isVisited } = spotIsVisited;
+        const isVisitedProperty = isVisited ? "true" : "false";
 
         const { data: apiSpot } = await axios.patch(
           `${apiUrl}/spots/${id}`,
-          { isVisited },
+          isVisitedProperty,
           requestConfig,
         );
 
