@@ -10,7 +10,6 @@ const Header = (): React.ReactElement => {
         alt="Barcelona sona logo"
         width="62"
         height="57"
-        loading="eager"
       />
     </header>
   );

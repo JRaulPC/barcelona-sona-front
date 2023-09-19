@@ -45,7 +45,7 @@ const NavigationBar = (): React.ReactElement => {
           Crear
         </li>
         <li className="navigation-bar__element">
-          <NavLink to={paths.homePage} className="navigation-bar__link">
+          <NavLink to={paths.spots} className="navigation-bar__link">
             <img
               src="/img/icon-list.svg"
               alt="Link para acceder a la página de listado"
