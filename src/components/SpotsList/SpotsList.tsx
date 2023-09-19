@@ -1,8 +1,8 @@
-import "./SpotsList.css";
-import { useAppSelector } from "../../store";
-import SpotCard from "../SpotCard/SpotCard";
 import React from "react";
+import { useAppSelector } from "../../store";
 import { Spot } from "../../types";
+import SpotCard from "../SpotCard/SpotCard";
+import "./SpotsList.css";
 
 const SpotsList = (): React.ReactElement => {
   const spots: Spot[] = useAppSelector(({ spotsStore: { spots } }) => spots);

@@ -13,6 +13,7 @@ import Button from "../../components/Button/Button";
 import "./SpotDetailPage.css";
 import paths from "../../paths/paths";
 import { Spot } from "../../types";
+import { Helmet } from "react-helmet";
 
 const SpotDetailPage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -53,41 +54,50 @@ const SpotDetailPage = (): React.ReactElement => {
   };
 
   return (
-    <main className="spot-detail-page">
-      <h2 className="spot-detail-page__title">{name}</h2>
-      <img
-        src={imageUrl}
-        alt={name}
-        width="288"
-        height="312"
-        className="spot-image "
-      />
-      <ul className="spot-detail-page__properties">
-        <li>{spotUse}</li>
-        <li>{openingYear}</li>
-      </ul>
-      <hr className="separator"></hr>
-      <div className="spot-detail-page__description">
-        <p className="spot-detail-page__description-text">{description}</p>
-      </div>
-      <div className="spot-checkbox">
-        <label htmlFor={`visited${name?.replace(/\s/g, "")}`}>
-          Lo has visitado?
-        </label>
-        <input
-          type="checkbox"
-          id={`visited${name?.replace(/\s/g, "")}`}
-          onChange={handeOnchange}
-          checked={isChecked}
+    <>
+      <Helmet>
+        <title>{`Página de detalle de ${spot.name}`}</title>
+        <meta
+          name="description"
+          content={`En esta página puedes ver informacion sobre ${spot.name} `}
         />
-      </div>
-      <Button
-        actionOnClick={deleteItem}
-        className="button-danger  button-danger--margin-top"
-      >
-        Eliminar
-      </Button>
-    </main>
+      </Helmet>
+      <main className="spot-detail-page">
+        <h2 className="spot-detail-page__title">{name}</h2>
+        <img
+          src={imageUrl}
+          alt={name}
+          width="288"
+          height="312"
+          className="spot-image "
+        />
+        <ul className="spot-detail-page__properties">
+          <li>{spotUse}</li>
+          <li>{openingYear}</li>
+        </ul>
+        <hr className="separator"></hr>
+        <div className="spot-detail-page__description">
+          <p className="spot-detail-page__description-text">{description}</p>
+        </div>
+        <div className="spot-checkbox">
+          <label htmlFor={`visited${name?.replace(/\s/g, "")}`}>
+            Lo has visitado?
+          </label>
+          <input
+            type="checkbox"
+            id={`visited${name?.replace(/\s/g, "")}`}
+            onChange={handeOnchange}
+            checked={isChecked}
+          />
+        </div>
+        <Button
+          actionOnClick={deleteItem}
+          className="button-danger  button-danger--margin-top"
+        >
+          Eliminar
+        </Button>
+      </main>
+    </>
   );
 };
 
