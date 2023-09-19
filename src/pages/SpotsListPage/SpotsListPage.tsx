@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Helmet } from "react-helmet";
 import SpotsList from "../../components/SpotsList/SpotsList";
 import { auth } from "../../firebase";
 import useSpotsApi from "../../hooks/useSpotsApi";
@@ -22,10 +23,19 @@ const SpotsListPage = (): React.ReactElement => {
   }, [dispatch, getSpots, user]);
 
   return (
-    <main className="spots-page">
-      <h2 className="spots-page__title">Espacios</h2>
-      <SpotsList />
-    </main>
+    <>
+      <Helmet>
+        <title>Listado de espacios</title>
+        <meta
+          name="description"
+          content="En esta página puedes consultar que espacios estan actualmente registrados"
+        />
+      </Helmet>
+      <main className="spots-page">
+        <h2 className="spots-page__title">Espacios</h2>
+        <SpotsList />
+      </main>
+    </>
   );
 };
 
