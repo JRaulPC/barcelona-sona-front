@@ -33,7 +33,7 @@ describe("Given a SpotCard component", () => {
 
   describe("When the checkbox with the text 'Lo has visitado?' is clicked", () => {
     test("Then the checkbox should appear as clicked", async () => {
-      const checkboxText = "Lo has visitado?";
+      const checkboxText = "Visitado";
 
       const user: Partial<User> = {
         displayName: "Emilio",

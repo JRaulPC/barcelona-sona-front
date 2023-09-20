@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { User } from "firebase/auth";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
@@ -157,13 +157,11 @@ describe("Given an App component", () => {
 
       await userEvent.click(createButton);
 
-      waitFor(async () => {
-        const cardHeading = await screen.findByRole("heading", {
-          name: cardExpectedHeading,
-        });
-
-        expect(cardHeading).toBeInTheDocument();
+      const cardHeading = await screen.findByRole("heading", {
+        name: cardExpectedHeading,
       });
+
+      expect(cardHeading).toBeInTheDocument();
     });
   });
 

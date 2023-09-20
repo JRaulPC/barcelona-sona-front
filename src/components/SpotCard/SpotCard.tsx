@@ -53,10 +53,9 @@ const SpotCard = ({
           <li>{openingYear}</li>
         </ul>
         <div className="spot-checkbox">
-          <label htmlFor={`visited${name?.replace(/\s/g, "")}`}>
-            Lo has visitado?
-          </label>
+          <label htmlFor={`visited${name?.replace(/\s/g, "")}`}>Visitado</label>
           <input
+            className="checked"
             type="checkbox"
             id={`visited${name?.replace(/\s/g, "")}`}
             onChange={handeOnchange}

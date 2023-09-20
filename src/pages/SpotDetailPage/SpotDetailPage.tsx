@@ -85,6 +85,7 @@ const SpotDetailPage = (): React.ReactElement => {
             Lo has visitado?
           </label>
           <input
+            className="checked"
             type="checkbox"
             id={`visited${name?.replace(/\s/g, "")}`}
             onChange={handeOnchange}
