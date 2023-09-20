@@ -118,7 +118,7 @@ const NewSpotForm = (): React.ReactElement => {
       <div className="form-control-checkbox form-control-textarea">
         <label htmlFor="isVisited">Visitado</label>
         <input
-          className="form-control-check"
+          className="checked"
           type="checkbox"
           id="isVisited"
           onChange={handleCheckedChange}

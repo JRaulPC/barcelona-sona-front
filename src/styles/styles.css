@@ -9,7 +9,7 @@
   --text-properties-color: #afafaf;
   --ui-selected-color: #4a4458;
   --form-input-color: #36343b;
-  --main-checkbox-color: #7920ff;
+  --main-checkbox-color: #4b2782;
   --button-soft-red: #f2b8b5;
   --toast-wrong: #b62828;
   --toast-ok: #30a75f;
@@ -104,8 +104,8 @@ h3 {
   background-color: var(--main-checkbox-color);
   border-radius: 8px;
   align-items: center;
-  font-size: 0.875rem;
-  font-weight: 400;
+  font-size: 0.975rem;
+  font-weight: 300;
   line-height: 24px; /* 171.429% */
   letter-spacing: 0.5px;
 }
@@ -114,4 +114,18 @@ h3 {
   object-fit: cover;
   object-position: center;
   border-radius: 12px 12px 0px 0px;
+}
+
+.checked:checked {
+  background-color: rgb(31, 180, 38);
+}
+
+.checked {
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+  width: 24px;
+  height: 24px;
+  appearance: none;
+  border: 1px solid #888;
+  border-radius: 5px;
 }

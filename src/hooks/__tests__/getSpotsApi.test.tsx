@@ -8,6 +8,7 @@ import { User } from "firebase/auth";
 import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { setupStore } from "../../store";
+import { BrowserRouter } from "react-router-dom";
 
 const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
   const store = setupStore({
@@ -15,9 +16,13 @@ const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
       isLoading: false,
     },
   });
-  return <Provider store={store}>{children}</Provider>;
-};
 
+  return (
+    <BrowserRouter>
+      <Provider store={store}>{children}</Provider>
+    </BrowserRouter>
+  );
+};
 const user: Partial<User> = {
   displayName: "Emilio",
   getIdToken: vi.fn().mockResolvedValue("token"),
