@@ -19,6 +19,8 @@ const Page404 = (): React.ReactElement => {
             className="page-404__img"
             src="/img/404-background.svg"
             alt="Representacion abstracta del efecto doppler"
+            width="140"
+            height="140"
           />
           <h2 className="page-404__title">Error 404</h2>
           <span className="page-404__text">
