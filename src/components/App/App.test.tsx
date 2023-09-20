@@ -29,6 +29,10 @@ const authStateHookMock: Partial<AuthStateHook> = [user as User];
 auth.useIdToken = vi.fn().mockReturnValue([user]);
 auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
+beforeEach(() => {
+  vi.clearAllMocks();
+});
+
 describe("Given an App component", () => {
   describe("When it is rendered", () => {
     test("Then it should show the text 'Barcelona SONA' inside a header", () => {
@@ -183,7 +187,7 @@ describe("Given an App component", () => {
     });
   });
 
-  describe("When the user clicks the 'Ver más' link of 'La modelo' card'", () => {
+  describe("And When the user clicks the 'Ver más' link of the card 'La modelo'", () => {
     test("Then it should show a detail page with the spot 'La modelo' as a heading", async () => {
       const linkText = "Ver más";
       const headingText = spotMock.name;
