@@ -1,12 +1,12 @@
-import "./NewSpotPage.css";
-import NewSpotForm from "../../components/NewSpotForm/NewSpotForm";
 import { Helmet } from "react-helmet";
+import NewSpotForm from "../../components/NewSpotForm/NewSpotForm";
+import "./NewSpotPage.css";
 
 const NewSpotPage = () => {
   return (
     <>
       <Helmet>
-        <title>Añadir un nuevos espacio</title>
+        <title>Barcelona Sona - Añadir un nuevos espacio</title>
         <meta
           name="description"
           content="En esta página puedes añadir un nuevo espacio a la lista"
