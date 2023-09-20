@@ -8,6 +8,7 @@ import { setupStore } from "../../store";
 import useSpotsApi from "../useSpotsApi";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
+import { BrowserRouter } from "react-router-dom";
 
 const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
   const store = setupStore({
@@ -15,7 +16,12 @@ const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
       isLoading: false,
     },
   });
-  return <Provider store={store}>{children}</Provider>;
+
+  return (
+    <BrowserRouter>
+      <Provider store={store}>{children}</Provider>
+    </BrowserRouter>
+  );
 };
 
 const user: Partial<User> = {

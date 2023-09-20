@@ -9,6 +9,7 @@ import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 import { User } from "firebase/auth";
 import { errorHandlers } from "../../mocks/handlers";
 import { server } from "../../mocks/server";
+import { BrowserRouter } from "react-router-dom";
 
 const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
   const store = setupStore({
@@ -19,7 +20,11 @@ const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
       spots: spotsMock,
     },
   });
-  return <Provider store={store}>{children}</Provider>;
+  return (
+    <BrowserRouter>
+      <Provider store={store}>{children}</Provider>
+    </BrowserRouter>
+  );
 };
 
 const user: Partial<User> = {

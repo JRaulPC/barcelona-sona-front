@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { setupStore } from "../../store";
 import useSpotsApi from "../useSpotsApi";
 import { formMock, mockedId, spotMock } from "../../mocks/mocks";
+import { BrowserRouter } from "react-router-dom";
 
 const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
   const store = setupStore({
@@ -11,7 +12,12 @@ const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
       isLoading: false,
     },
   });
-  return <Provider store={store}>{children}</Provider>;
+
+  return (
+    <BrowserRouter>
+      <Provider store={store}>{children}</Provider>
+    </BrowserRouter>
+  );
 };
 
 describe("Given an userSpotsApi custom hook", () => {

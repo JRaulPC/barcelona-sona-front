@@ -13,12 +13,15 @@ import {
   stopLoadingActionCreator,
 } from "../store/ui/uiSlice";
 import { ApiSpots, Spot } from "../types";
+import { useNavigate } from "react-router-dom";
+import paths from "../paths/paths";
 
 export const apiUrl = import.meta.env.VITE_API_URL;
 
 const useSpotsApi = () => {
   const [user] = useIdToken(auth);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const getSpots = useCallback(async (): Promise<Spot[] | undefined> => {
     dispatch(startLoadingActionCreator());
@@ -40,12 +43,12 @@ const useSpotsApi = () => {
         requestConfig,
       );
 
+      dispatch(stopLoadingActionCreator());
+
       const spots = apiSpots.spots.map(({ _id, ...spot }) => ({
         id: _id,
         ...spot,
       }));
-
-      dispatch(stopLoadingActionCreator());
 
       return spots;
     } catch (error: unknown) {
@@ -148,6 +151,7 @@ const useSpotsApi = () => {
 
         return selectedSpot;
       } catch (error: unknown) {
+        navigate(paths.spots);
         const message = "No se puede mostrar el espacio";
 
         showFeedback(message, "error");
@@ -155,11 +159,13 @@ const useSpotsApi = () => {
         throw new Error(message);
       }
     },
-    [user],
+    [navigate, user],
   );
 
   const toogleIsVisited = useCallback(
     async (id: string, isVisited: boolean): Promise<Spot | undefined> => {
+      dispatch(startLoadingActionCreator());
+
       try {
         if (!user) {
           throw new Error("User not found");
@@ -181,6 +187,8 @@ const useSpotsApi = () => {
           requestConfig,
         );
 
+        dispatch(stopLoadingActionCreator());
+
         const updatedSpot = { id: apiSpot.spot._id, ...apiSpot.spot };
         delete updatedSpot._id;
 
@@ -188,12 +196,13 @@ const useSpotsApi = () => {
       } catch (error: unknown) {
         const message = "No se puede actualizar el espacio";
 
+        dispatch(stopLoadingActionCreator());
         showFeedback(message, "error");
 
         throw new Error(message);
       }
     },
-    [user],
+    [dispatch, user],
   );
 
   return { getSpots, deleteSpot, addSpot, getSpotById, toogleIsVisited };
