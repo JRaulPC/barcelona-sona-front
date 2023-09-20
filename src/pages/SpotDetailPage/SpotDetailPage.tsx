@@ -14,6 +14,7 @@ import "./SpotDetailPage.css";
 import paths from "../../paths/paths";
 import { Spot } from "../../types";
 import { Helmet } from "react-helmet";
+import preloadSelectedImage from "../../utils/preloadSelectedImage";
 
 const SpotDetailPage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -30,7 +31,7 @@ const SpotDetailPage = (): React.ReactElement => {
     if (user) {
       (async () => {
         const selectedSpot = await getSpotById(id!);
-
+        preloadSelectedImage(selectedSpot!.imageUrl);
         dispatch(loadSelectedSpotActionCreator(selectedSpot!));
       })();
     }
@@ -56,7 +57,7 @@ const SpotDetailPage = (): React.ReactElement => {
   return (
     <>
       <Helmet>
-        <title>{`${spot.name} Barcelona Sona`}</title>
+        <title>{`Barcelona Sona - ${spot.name}`}</title>
         <meta
           name="description"
           content={`En esta página puedes ver informacion sobre ${spot.name} `}

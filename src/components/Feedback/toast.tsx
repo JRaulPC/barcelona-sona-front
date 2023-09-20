@@ -6,6 +6,7 @@ export const createSuccesFeedback = "El espacio ha sido creado con éxito";
 
 export const showFeedback = (message: string, type: "error" | "success") =>
   toast[type](message, {
+    autoClose: 1500,
     position: "top-left",
     theme: "dark",
     className: type,

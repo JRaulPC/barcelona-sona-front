@@ -9,7 +9,8 @@ import paths from "../../paths/paths";
 import "./NewSpotForm.css";
 
 const NewSpotForm = (): React.ReactElement => {
-  const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(false);
+
   const [newSpot, setNewSpot] = useState<Partial<Spot>>({
     name: "",
     imageUrl: "",
@@ -23,9 +24,7 @@ const NewSpotForm = (): React.ReactElement => {
   const { addSpot } = useSpotsApi();
 
   const handleChange = (
-    event: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setNewSpot((newSpot) => ({
       ...newSpot,
@@ -33,9 +32,20 @@ const NewSpotForm = (): React.ReactElement => {
     }));
   };
 
+  const handleCheckedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNewSpot((newSpot) => ({
+      ...newSpot,
+      [event.target.id]: event.target.checked,
+    }));
+  };
+
   useEffect(() => {
+    const newSpotCheck = { ...newSpot };
+
+    delete newSpotCheck.isVisited;
+
     setDisabled(
-      Object.values(newSpot).every((value) => {
+      Object.values(newSpotCheck).every((value) => {
         return Boolean(value);
       }),
     );
@@ -111,13 +121,13 @@ const NewSpotForm = (): React.ReactElement => {
           className="form-control-check"
           type="checkbox"
           id="isVisited"
-          onChange={handleChange}
+          onChange={handleCheckedChange}
         />
       </div>
       <div className="form-spot__button">
         <Button
-          className="outline-white outline-white--wider "
-          disabled={disabled}
+          className="outline-white outline-white--wider"
+          disabled={!disabled}
           type="submit"
         >
           Añadir espacio
