@@ -1,23 +1,24 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import Header from "../Header/Header";
-import paths from "../../paths/paths";
-import HomePage from "../../pages/HomePage/HomePage";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase";
 import React, { Suspense } from "react";
-import "./App.css";
-import NavigationBar from "../NavigationBar/NavigationBar";
-import { useAppSelector } from "../../store";
-import Feedback from "../Feedback/Feedback";
-import Loader from "../Loader/Loader";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import { auth } from "../../firebase";
+import HomePage from "../../pages/HomePage/HomePage";
 import {
   LazyDetailPage,
   LazyNewSpotPage,
   LazyPage404,
+  LazyRegisterUserPage,
   LazySpotsListPage,
 } from "../../pages/LazyPages/LazyPages";
+import paths from "../../paths/paths";
+import { useAppSelector } from "../../store";
+import Feedback from "../Feedback/Feedback";
+import Header from "../Header/Header";
+import Loader from "../Loader/Loader";
+import NavigationBar from "../NavigationBar/NavigationBar";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import "./App.css";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -31,6 +32,14 @@ const App = (): React.ReactElement => {
         <Routes>
           <Route path="/" element={<Navigate to={paths.homePage} />} />
           <Route path={paths.homePage} element={<HomePage />} />
+          <Route
+            path={paths.register}
+            element={
+              <Suspense>
+                <LazyRegisterUserPage />
+              </Suspense>
+            }
+          />
           <Route
             path={paths.spots}
             element={
@@ -61,7 +70,6 @@ const App = (): React.ReactElement => {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="*"
             element={

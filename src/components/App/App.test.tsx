@@ -113,6 +113,7 @@ describe("Given an App component", () => {
         displayName: "Emilio",
         getIdToken: vi.fn().mockResolvedValue("token"),
       };
+
       const authStateHookMock: Partial<AuthStateHook> = [user as User];
       auth.useIdToken = vi.fn().mockReturnValue([user]);
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
@@ -214,7 +215,7 @@ describe("Given an App component", () => {
     });
   });
 
-  describe("When the a page with the heading 'La modelo' shown and the button with the text 'Eliminar' is clicked", () => {
+  describe("When the a page with the heading 'La modelo' is shown and the button with the text 'Eliminar' is clicked", () => {
     const buttonText = "Eliminar";
     const headingText = "Espacios";
     const detailPath = "/detalle/1";

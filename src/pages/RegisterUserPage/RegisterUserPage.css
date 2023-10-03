@@ -1,0 +1,19 @@
+.register-user-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-user-page__title {
+  padding: 24px 0px;
+  font-family: var(--main-font), system-ui;
+  font-size: 1.3rem;
+  color: var(--new-spot-title-font-color);
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: -1.1px;
+}
+
+.register-user-page__back-home {
+  color: white;
+  align-self: center;
+}
