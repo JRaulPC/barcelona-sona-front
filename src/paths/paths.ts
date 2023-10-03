@@ -4,6 +4,7 @@ const paths = {
   notFound: "/404",
   createSpot: "/crear",
   spotDetail: "/detalle",
+  register: "/registrar",
 };
 
 export default paths;
