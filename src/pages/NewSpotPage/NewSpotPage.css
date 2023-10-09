@@ -9,7 +9,7 @@
   padding: 24px 0px;
   font-family: var(--main-font), system-ui;
   font-size: 1.3rem;
-  color: var(--new-spot-title-font-color);
+  color: var(--titles-font-color);
   font-weight: 400;
   line-height: 36px;
   letter-spacing: -1.1px;
