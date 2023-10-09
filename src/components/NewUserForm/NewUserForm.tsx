@@ -37,6 +37,7 @@ const NewUserForm = (): React.ReactElement => {
 
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     try {
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
