@@ -21,3 +21,10 @@ export interface Spot extends Omit<ApiSpot, "_id"> {
   isVisited: boolean;
   description: string;
 }
+
+export interface User {
+  name: string;
+  email: string;
+  password: string;
+  uid?: string;
+}
