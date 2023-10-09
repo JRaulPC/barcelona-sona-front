@@ -1,16 +1,18 @@
 import { browserPopupRedirectResolver, signInWithPopup } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { Link, Navigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import FormWrapper from "../../components/FormWrapper/FormWrapper";
+import LoginForm from "../../components/LoginForm/LoginForm";
 import { auth, gitHubAuthProvider } from "../../firebase";
 import paths from "../../paths/paths";
 import "./HomePage.css";
-import { Helmet } from "react-helmet";
 
 const HomePage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
 
-  const login = async () => {
+  const loginWithGithub = async () => {
     await signInWithPopup(
       auth,
       gitHubAuthProvider,
@@ -33,21 +35,17 @@ const HomePage = (): React.ReactElement => {
         />
       </Helmet>
       <main className="homepage">
+        <h1 className="homepage__site-title">Barcelona SONA</h1>
         <div className="homepage__title">
           <h2 className="homepage__title-text">
             Consulta que espacios tienen su acústica registrada o añade el tuyo.
           </h2>
         </div>
         <div className="homepage__elements">
-          <img
-            src="/img/home-page-drawing.svg"
-            alt="Representación abstracta del efecto sonoro doppler"
-            width="274"
-            height="247"
-            className="homepage__image"
-            loading="eager"
-          />
-          <Button className="button-primary" actionOnClick={login}>
+          <FormWrapper>
+            <LoginForm />
+          </FormWrapper>
+          <Button className="button-primary" actionOnClick={loginWithGithub}>
             <>
               <img
                 src="/img/github.svg"
@@ -60,6 +58,9 @@ const HomePage = (): React.ReactElement => {
               Entra con GitHub
             </>
           </Button>
+          <Link className="homepage__link-to-register " to={paths.register}>
+            ¿No tienes cuenta? Registrate
+          </Link>
         </div>
       </main>
     </>

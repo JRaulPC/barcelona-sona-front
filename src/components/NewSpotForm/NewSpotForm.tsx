@@ -6,7 +6,6 @@ import { useAppDispatch } from "../../store";
 import { addsSpotActionCreator } from "../../store/spots/spotsSlice";
 import { useNavigate } from "react-router-dom";
 import paths from "../../paths/paths";
-import "./NewSpotForm.css";
 
 const NewSpotForm = (): React.ReactElement => {
   const [disabled, setDisabled] = useState(false);

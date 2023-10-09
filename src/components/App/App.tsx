@@ -28,7 +28,7 @@ const App = (): React.ReactElement => {
     <>
       <Feedback />
       <div className="container">
-        <Header />
+        {user && <Header />}
         <Routes>
           <Route path="/" element={<Navigate to={paths.homePage} />} />
           <Route path={paths.homePage} element={<HomePage />} />
