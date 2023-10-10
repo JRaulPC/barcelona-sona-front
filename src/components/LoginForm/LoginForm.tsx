@@ -6,7 +6,7 @@ import paths from "../../paths/paths";
 import { User } from "../../types";
 import Button from "../Button/Button";
 import { FirebaseError } from "firebase/app";
-import { showFeedback, wrongPassword } from "../Feedback/toast";
+import { showFeedback, wrongEmail, wrongPassword } from "../Feedback/toast";
 
 const LoginForm = (): React.ReactElement => {
   const [logUser, setLogUser] = useState<Partial<User>>({

@@ -1,11 +1,12 @@
-import NewUserForm from "../../components/NewUserForm/NewUserForm";
-import FormWrapper from "../../components/FormWrapper/FormWrapper";
-import "./RegisterUserPage.css";
-import { Link, Navigate } from "react-router-dom";
-import paths from "../../paths/paths";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase";
 import { Helmet } from "react-helmet";
+import { Link, Navigate } from "react-router-dom";
+import FormWrapper from "../../components/FormWrapper/FormWrapper";
+import NewUserForm from "../../components/NewUserForm/NewUserForm";
+import { auth } from "../../firebase";
+import paths from "../../paths/paths";
+import "./RegisterUserPage.css";
+import Header from "../../components/Header/Header";
 
 const RegisterUserPage = () => {
   const [user, isLoading] = useAuthState(auth);
@@ -23,6 +24,7 @@ const RegisterUserPage = () => {
           content="En esta página puedes registrarte como usuario"
         />
       </Helmet>
+      <Header />
       <main className="register-user-page">
         <h2 className="register-user-page__title">Crear cuenta</h2>
         <FormWrapper>
