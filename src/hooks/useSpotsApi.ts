@@ -43,18 +43,17 @@ const useSpotsApi = () => {
         requestConfig,
       );
 
-      dispatch(stopLoadingActionCreator());
-
       const spots = apiSpots.spots.map(({ _id, ...spot }) => ({
         id: _id,
         ...spot,
       }));
 
+      dispatch(stopLoadingActionCreator());
+
       return spots;
     } catch (error: unknown) {
       const message = "No se pueden mostrar espacios";
 
-      showFeedback(message, "error");
       dispatch(stopLoadingActionCreator());
       throw new Error(message);
     }
