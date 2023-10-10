@@ -1,14 +1,14 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import paths from "../../paths/paths";
 import { User } from "../../types";
 import Button from "../Button/Button";
+import { FirebaseError } from "firebase/app";
+import { showFeedback, wrongPassword } from "../Feedback/toast";
 
 const LoginForm = (): React.ReactElement => {
-  const [disabled, setDisabled] = useState(false);
-
   const [logUser, setLogUser] = useState<Partial<User>>({
     email: "",
     password: "",
@@ -21,19 +21,24 @@ const LoginForm = (): React.ReactElement => {
     }));
   };
 
-  useEffect(() => {
-    setDisabled(
-      Object.values(logUser).every((value) => {
-        return Boolean(value);
-      }),
-    );
-  }, [logUser]);
-
   const navigate = useNavigate();
 
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    signInWithEmailAndPassword(auth, logUser.email!, logUser.password!);
+
+    try {
+      await signInWithEmailAndPassword(auth, logUser.email!, logUser.password!);
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        if (error.message === "Firebase: Error (auth/wrong-password).") {
+          showFeedback(wrongPassword, "error");
+        }
+
+        if (error.message === "Firebase: Error (auth/user-not-found).") {
+          showFeedback(wrongEmail, "error");
+        }
+      }
+    }
 
     navigate(paths.homePage);
   };
@@ -62,11 +67,7 @@ const LoginForm = (): React.ReactElement => {
         />
       </div>
       <div className="form-spot__button">
-        <Button
-          className="outline-white outline-white--wider"
-          type="submit"
-          disabled={!disabled}
-        >
+        <Button className="outline-white outline-white--wider" type="submit">
           Entrar
         </Button>
       </div>

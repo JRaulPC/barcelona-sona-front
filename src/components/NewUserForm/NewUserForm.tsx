@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { auth } from "../../firebase";
 import { apiUrl } from "../../hooks/useSpotsApi";
 import { User } from "../../types";
@@ -8,8 +8,6 @@ import Button from "../Button/Button";
 import { accountSuccesFeedback, showFeedback } from "../Feedback/toast";
 
 const NewUserForm = (): React.ReactElement => {
-  const [disabled, setDisabled] = useState(false);
-
   const [newUser, setNewUser] = useState<User>({
     name: "",
     email: "",
@@ -22,14 +20,6 @@ const NewUserForm = (): React.ReactElement => {
       [event.target.id]: event.target.value,
     }));
   };
-
-  useEffect(() => {
-    setDisabled(
-      Object.values(newUser).every((value) => {
-        return Boolean(value);
-      }),
-    );
-  }, [newUser]);
 
   const signUp = async (user: User) => {
     await axios.post(`${apiUrl}/registrar`, user);
@@ -93,11 +83,7 @@ const NewUserForm = (): React.ReactElement => {
         />
       </div>
       <div className="form-spot__button">
-        <Button
-          className="outline-white outline-white--wider"
-          type="submit"
-          disabled={!disabled}
-        >
+        <Button className="button-primary" type="submit">
           Registrar
         </Button>
       </div>
