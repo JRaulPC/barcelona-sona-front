@@ -6,6 +6,7 @@
   padding: 16px;
   justify-content: space-between;
   background: var(--header-bg-color);
+  border-bottom: 0.1px solid white;
 }
 
 .header__title {
@@ -13,4 +14,45 @@
   font-size: 1.3rem;
   color: var(--main-font-color);
   text-align: center;
+}
+
+.header__links {
+  display: flex;
+  align-items: center;
+  color: var(--secondary-font-color);
+  gap: 32px;
+}
+
+.header__link {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.user-name {
+  color: var(--main-font-color);
+}
+
+.header__page-misc {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header__page-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 468px) {
+  .header__element {
+    display: none;
+  }
+  .user-name {
+    display: none;
+  }
+  .header__exit-button {
+    display: none;
+  }
 }
