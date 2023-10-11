@@ -6,7 +6,6 @@ import NewUserForm from "../../components/NewUserForm/NewUserForm";
 import { auth } from "../../firebase";
 import paths from "../../paths/paths";
 import "./RegisterUserPage.css";
-import Header from "../../components/Header/Header";
 
 const RegisterUserPage = () => {
   const [user, isLoading] = useAuthState(auth);
@@ -24,7 +23,6 @@ const RegisterUserPage = () => {
           content="En esta página puedes registrarte como usuario"
         />
       </Helmet>
-      <Header />
       <main className="register-user-page">
         <h2 className="register-user-page__title">Crear cuenta</h2>
         <FormWrapper>
