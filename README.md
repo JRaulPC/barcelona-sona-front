@@ -24,15 +24,15 @@ https://raul-perez-final-project-202307-bcn.onrender.com/
 
 ### User authentication for managing your own spot lists, adding, deleting and modifying them
 
-![Alt Text](https://cdn.discordapp.com/attachments/392765397910421507/1154170199633825852/homepage.png)
+![Alt Text](https://cdn.discordapp.com/attachments/392765397910421507/1206012395059675178/homepage_1.png?ex=65da7591&is=65c80091&hm=7153d83c5526481712d22ecd0a9a75105768677e2b6e231f09637dac1a387bd4&)
 
 ### Explore different spots and locations in Barcelona,
 
-![Alt Text](https://cdn.discordapp.com/attachments/392765397910421507/1154170200288137327/list-2.png)
+![Alt Text](https://cdn.discordapp.com/attachments/392765397910421507/1206012367239127133/list-2_1.png?ex=65da758a&is=65c8008a&hm=fc16feb48075c6a07a03766eb6570b380131b41a10fe7149d813bc76c0f99bb9&)
 
 ## Intuitive and accesible user interface for a seamless browsing experience with active user feedback with toast notifications
 
-![Alt Text](https://cdn.discordapp.com/attachments/392765397910421507/1154172557759631380/Screenshot_2023-09-20_at_23.49.06.png)
+![Alt Text](https://cdn.discordapp.com/attachments/392765397910421507/1206012408422727770/error_1.png?ex=65da7594&is=65c80094&hm=78ec87934ee8b4de4c63c915847f0361d8135d335e71b356c92213d6309e2c13&)
 
 ## Scripts 📝
 
