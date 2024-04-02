@@ -6,7 +6,7 @@ Barcelona SONA is a web application developed using the MERN (MongoDB, Express.j
 
 The application is deployed in using onrender web services in the next URL
 
-https://raul-perez-final-project-202307-bcn.onrender.com/
+Site: https://barcelona-sona.netlify.app/home
 
 ## Technologies Used ⚙️
 
