@@ -1,7 +1,6 @@
 import { browserPopupRedirectResolver, signInWithPopup } from "firebase/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { Helmet } from "react-helmet";
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import FormWrapper from "../../components/FormWrapper/FormWrapper";
 import LoginForm from "../../components/LoginForm/LoginForm";
@@ -10,8 +9,6 @@ import paths from "../../paths/paths";
 import "./HomePage.css";
 
 const HomePage = (): React.ReactElement => {
-  const [user] = useAuthState(auth);
-
   const loginWithGithub = async () => {
     await signInWithPopup(
       auth,
@@ -20,9 +17,7 @@ const HomePage = (): React.ReactElement => {
     );
   };
 
-  if (user) {
-    return <Navigate to={paths.spots} />;
-  }
+  return <Navigate to={paths.spots} />;
 
   return (
     <>
@@ -58,9 +53,6 @@ const HomePage = (): React.ReactElement => {
               Entra con GitHub
             </>
           </Button>
-          <Link className="homepage__link-to-register " to={paths.register}>
-            ¿No tienes cuenta? Registrate
-          </Link>
         </div>
       </main>
     </>

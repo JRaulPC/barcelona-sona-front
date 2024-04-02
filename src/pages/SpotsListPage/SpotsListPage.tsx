@@ -22,14 +22,12 @@ const SpotsListPage = (): React.ReactElement => {
   const hasSpots = spots.length > 0;
 
   useEffect(() => {
-    if (user) {
-      (async () => {
-        const userSpots = await getSpots();
-        dispatch(loadSpotsActionCreator(userSpots!));
+    (async () => {
+      const userSpots = await getSpots();
+      dispatch(loadSpotsActionCreator(userSpots!));
 
-        hasSpots ? preloadSelectedImage(userSpots![0].imageUrl) : null;
-      })();
-    }
+      hasSpots ? preloadSelectedImage(userSpots![0].imageUrl) : null;
+    })();
   }, [dispatch, getSpots, hasSpots, user]);
 
   return (
