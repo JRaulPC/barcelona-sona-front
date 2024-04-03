@@ -1,23 +1,30 @@
 import { browserPopupRedirectResolver, signInWithPopup } from "firebase/auth";
 import { Helmet } from "react-helmet";
-import { Navigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import FormWrapper from "../../components/FormWrapper/FormWrapper";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import { auth, gitHubAuthProvider } from "../../firebase";
+import "./LoginPage.css";
+import { Navigate } from "react-router-dom";
 import paths from "../../paths/paths";
-import "./HomePage.css";
+import { useState } from "react";
 
-const HomePage = (): React.ReactElement => {
+const LoginPage = (): React.ReactElement => {
+  const [loggedIn, setLoggedIn] = useState(false);
+
   const loginWithGithub = async () => {
     await signInWithPopup(
       auth,
       gitHubAuthProvider,
       browserPopupRedirectResolver,
     );
+
+    setLoggedIn(true);
   };
 
-  return <Navigate to={paths.spots} />;
+  if (loggedIn) {
+    return <Navigate to={paths.spots} />;
+  }
 
   return (
     <>
@@ -59,4 +66,4 @@ const HomePage = (): React.ReactElement => {
   );
 };
 
-export default HomePage;
+export default LoginPage;

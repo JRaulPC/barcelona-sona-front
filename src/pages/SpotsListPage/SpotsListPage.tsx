@@ -10,6 +10,7 @@ import { auth } from "../../firebase";
 import preloadSelectedImage from "../../utils/preloadSelectedImage";
 import { Spot } from "../../types";
 import EmptySpotsList from "../../components/EmptySpotsList/EmptySpotsList";
+import SpotsListExemple from "../../components/SpotsList/SpotsListExemple";
 
 const SpotsListPage = (): React.ReactElement => {
   const [user, isLoadingAuth] = useAuthState(auth);
@@ -22,15 +23,25 @@ const SpotsListPage = (): React.ReactElement => {
   const hasSpots = spots.length > 0;
 
   useEffect(() => {
-    if (user) {
-      (async () => {
-        const userSpots = await getSpots();
-        dispatch(loadSpotsActionCreator(userSpots!));
+    (async () => {
+      const userSpots = await getSpots();
+      dispatch(loadSpotsActionCreator(userSpots!));
 
-        hasSpots ? preloadSelectedImage(userSpots![0].imageUrl) : null;
-      })();
-    }
+      hasSpots ? preloadSelectedImage(userSpots![0].imageUrl) : null;
+    })();
   }, [dispatch, getSpots, hasSpots, user]);
+
+  if (!user) {
+    return (
+      <main className="spots-page">
+        <h2 className="spots-page__title">
+          Este es un ejemplo de como se verian los espacios, registrate para
+          añadir los tuyos y modificarlos.
+        </h2>
+        <SpotsListExemple />
+      </main>
+    );
+  }
 
   return (
     <>

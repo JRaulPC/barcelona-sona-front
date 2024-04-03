@@ -17,8 +17,9 @@ import Feedback from "../Feedback/Feedback";
 import Header from "../Header/Header";
 import Loader from "../Loader/Loader";
 import NavigationBar from "../NavigationBar/NavigationBar";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+
 import "./App.css";
+import LoginPage from "../../pages/LoginPage/LoginPage";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -28,10 +29,12 @@ const App = (): React.ReactElement => {
     <>
       <Feedback />
       <div className="container">
-        {user && <Header />}
+        <Header />
         <Routes>
           <Route path="/" element={<Navigate to={paths.homePage} />} />
           <Route path={paths.homePage} element={<HomePage />} />
+          <Route path={paths.login} element={<LoginPage />} />
+
           <Route
             path={paths.register}
             element={
@@ -43,31 +46,25 @@ const App = (): React.ReactElement => {
           <Route
             path={paths.spots}
             element={
-              <ProtectedRoute>
-                <Suspense>
-                  <LazySpotsListPage />
-                </Suspense>
-              </ProtectedRoute>
+              <Suspense>
+                <LazySpotsListPage />
+              </Suspense>
             }
           />
           <Route
             path={paths.createSpot}
             element={
-              <ProtectedRoute>
-                <Suspense>
-                  <LazyNewSpotPage />
-                </Suspense>
-              </ProtectedRoute>
+              <Suspense>
+                <LazyNewSpotPage />
+              </Suspense>
             }
           />
           <Route
             path={`${paths.spotDetail}/:id`}
             element={
-              <ProtectedRoute>
-                <Suspense>
-                  <LazyDetailPage />
-                </Suspense>
-              </ProtectedRoute>
+              <Suspense>
+                <LazyDetailPage />
+              </Suspense>
             }
           />
           <Route

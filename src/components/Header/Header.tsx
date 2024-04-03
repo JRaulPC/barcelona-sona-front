@@ -22,13 +22,11 @@ const Header = (): React.ReactElement => {
         <ul className="header__links">
           <li className="header__element">
             <NavLink to={paths.createSpot} className="header__link">
-              {" "}
               Crear
             </NavLink>
           </li>
           <li className="header__element">
             <NavLink to={paths.spots} className="header__link">
-              {" "}
               Espacios
             </NavLink>
           </li>
@@ -36,22 +34,29 @@ const Header = (): React.ReactElement => {
       </div>
       <div className="header__page-misc">
         <span className="user-name">{user?.email}</span>
-        <Button
-          type="button"
-          actionOnClick={logout}
-          className="header__exit-button"
-        >
-          <>
-            <img
-              src="/img/icon-exit.svg"
-              alt="Botón para cerrar sesión de usuario"
-              width="24"
-              height="24"
-              className="header__exit-logo"
-            />
-            Salir
-          </>
-        </Button>
+        {user ? (
+          <Button
+            type="button"
+            actionOnClick={logout}
+            className="header__exit-button"
+          >
+            <>
+              <img
+                src="/img/icon-exit.svg"
+                alt="Botón para cerrar sesión de usuario"
+                width="24"
+                height="24"
+                className="header__exit-logo"
+              />
+              Salir
+            </>
+          </Button>
+        ) : (
+          <Link className="homepage__link-to-register " to={paths.register}>
+            ¿No tienes cuenta? Registrate
+          </Link>
+        )}
+
         <img
           className="header__logo"
           src="/img/app-logo.svg"
