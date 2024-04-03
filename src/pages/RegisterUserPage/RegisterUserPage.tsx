@@ -28,7 +28,7 @@ const RegisterUserPage = () => {
         <FormWrapper>
           <NewUserForm />
         </FormWrapper>
-        <Link className="register-user-page__back-home" to={paths.homePage}>
+        <Link className="register-user-page__back-home" to={paths.login}>
           ¿Ya tienes una cuenta? Entra
         </Link>
       </main>

@@ -1,0 +1,69 @@
+import { browserPopupRedirectResolver, signInWithPopup } from "firebase/auth";
+import { Helmet } from "react-helmet";
+import Button from "../../components/Button/Button";
+import FormWrapper from "../../components/FormWrapper/FormWrapper";
+import LoginForm from "../../components/LoginForm/LoginForm";
+import { auth, gitHubAuthProvider } from "../../firebase";
+import "./LoginPage.css";
+import { Navigate } from "react-router-dom";
+import paths from "../../paths/paths";
+import { useState } from "react";
+
+const LoginPage = (): React.ReactElement => {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const loginWithGithub = async () => {
+    await signInWithPopup(
+      auth,
+      gitHubAuthProvider,
+      browserPopupRedirectResolver,
+    );
+
+    setLoggedIn(true);
+  };
+
+  if (loggedIn) {
+    return <Navigate to={paths.spots} />;
+  }
+
+  return (
+    <>
+      <Helmet>
+        <title>Barcelona Sona</title>
+        <meta
+          name="description"
+          content="Consulta los espacios de Barcelona que tienen su acústica registrada y 
+          aprende sobre el património acústico de la ciudad de Barcelona"
+        />
+      </Helmet>
+      <main className="homepage">
+        <h1 className="homepage__site-title">Barcelona SONA</h1>
+        <div className="homepage__title">
+          <h2 className="homepage__title-text">
+            Consulta que espacios tienen su acústica registrada o añade el tuyo.
+          </h2>
+        </div>
+        <div className="homepage__elements">
+          <FormWrapper>
+            <LoginForm />
+          </FormWrapper>
+          <Button className="button-primary" actionOnClick={loginWithGithub}>
+            <>
+              <img
+                src="/img/github.svg"
+                alt="Botón para iniciar sesión de usuario"
+                width="28"
+                height="28"
+                className="login-button__image"
+                loading="eager"
+              />
+              Entra con GitHub
+            </>
+          </Button>
+        </div>
+      </main>
+    </>
+  );
+};
+
+export default LoginPage;

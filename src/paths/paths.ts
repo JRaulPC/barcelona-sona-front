@@ -5,6 +5,7 @@ const paths = {
   createSpot: "/crear",
   spotDetail: "/detalle",
   register: "/registrar",
+  login: "/login",
 };
 
 export default paths;

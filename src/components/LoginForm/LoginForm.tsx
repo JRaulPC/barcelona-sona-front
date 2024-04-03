@@ -9,6 +9,7 @@ import { FirebaseError } from "firebase/app";
 import { showFeedback, wrongEmail, wrongPassword } from "../Feedback/toast";
 
 const LoginForm = (): React.ReactElement => {
+  const navigate = useNavigate();
   const [logUser, setLogUser] = useState<Partial<User>>({
     email: "",
     password: "",
@@ -20,8 +21,6 @@ const LoginForm = (): React.ReactElement => {
       [event.target.id]: event.target.value,
     }));
   };
-
-  const navigate = useNavigate();
 
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

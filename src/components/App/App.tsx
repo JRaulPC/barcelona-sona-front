@@ -19,6 +19,7 @@ import Loader from "../Loader/Loader";
 import NavigationBar from "../NavigationBar/NavigationBar";
 
 import "./App.css";
+import LoginPage from "../../pages/LoginPage/LoginPage";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -32,6 +33,8 @@ const App = (): React.ReactElement => {
         <Routes>
           <Route path="/" element={<Navigate to={paths.homePage} />} />
           <Route path={paths.homePage} element={<HomePage />} />
+          <Route path={paths.login} element={<LoginPage />} />
+
           <Route
             path={paths.register}
             element={
