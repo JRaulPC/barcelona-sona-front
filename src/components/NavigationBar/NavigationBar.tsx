@@ -1,10 +1,10 @@
-import { NavLink } from "react-router-dom";
-import "./NavigationBar.css";
-import Button from "../Button/Button";
-import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import React from "react";
+import { NavLink } from "react-router-dom";
+import { auth } from "../../firebase";
 import paths from "../../paths/paths";
+import Button from "../Button/Button";
+import "./NavigationBar.css";
 
 const NavigationBar = (): React.ReactElement => {
   const logout = async () => {
