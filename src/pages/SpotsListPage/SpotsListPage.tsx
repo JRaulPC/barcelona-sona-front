@@ -11,6 +11,7 @@ import preloadSelectedImage from "../../utils/preloadSelectedImage";
 import { Spot } from "../../types";
 import EmptySpotsList from "../../components/EmptySpotsList/EmptySpotsList";
 import SpotsListExemple from "../../components/SpotsList/SpotsListExemple";
+import DisclaimerPopUp from "../../components/DisclaimerPopUp/DisclaimerPopUp";
 
 const SpotsListPage = (): React.ReactElement => {
   const [user, isLoadingAuth] = useAuthState(auth);
@@ -38,6 +39,7 @@ const SpotsListPage = (): React.ReactElement => {
           Este es un ejemplo de como se verian los espacios, registrate para
           añadir los tuyos y modificarlos.
         </h2>
+        <DisclaimerPopUp />
         <SpotsListExemple />
       </main>
     );

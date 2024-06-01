@@ -20,11 +20,13 @@ const Header = (): React.ReactElement => {
           <h1 className="header__title">Barcelona SONA</h1>
         </Link>
         <ul className="header__links">
-          <li className="header__element">
-            <NavLink to={paths.createSpot} className="header__link">
-              Crear
-            </NavLink>
-          </li>
+          {user ? (
+            <li className="navigation-bar__element">
+              <NavLink to={paths.createSpot} className="header__link">
+                Crear
+              </NavLink>
+            </li>
+          ) : null}
           <li className="header__element">
             <NavLink to={paths.spots} className="header__link">
               Espacios
