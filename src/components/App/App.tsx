@@ -34,7 +34,6 @@ const App = (): React.ReactElement => {
           <Route path="/" element={<Navigate to={paths.homePage} />} />
           <Route path={paths.homePage} element={<HomePage />} />
           <Route path={paths.login} element={<LoginPage />} />
-
           <Route
             path={paths.register}
             element={

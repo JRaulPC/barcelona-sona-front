@@ -1,17 +1,16 @@
 import { useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Helmet } from "react-helmet";
+import EmptySpotsList from "../../components/EmptySpotsList/EmptySpotsList";
 import SpotsList from "../../components/SpotsList/SpotsList";
+import SpotsListExemple from "../../components/SpotsList/SpotsListExemple";
+import { auth } from "../../firebase";
 import useSpotsApi from "../../hooks/useSpotsApi";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { loadSpotsActionCreator } from "../../store/spots/spotsSlice";
-import "./SpotsListPage.css";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase";
-import preloadSelectedImage from "../../utils/preloadSelectedImage";
 import { Spot } from "../../types";
-import EmptySpotsList from "../../components/EmptySpotsList/EmptySpotsList";
-import SpotsListExemple from "../../components/SpotsList/SpotsListExemple";
-import DisclaimerPopUp from "../../components/DisclaimerPopUp/DisclaimerPopUp";
+import preloadSelectedImage from "../../utils/preloadSelectedImage";
+import "./SpotsListPage.css";
 
 const SpotsListPage = (): React.ReactElement => {
   const [user, isLoadingAuth] = useAuthState(auth);
@@ -39,7 +38,6 @@ const SpotsListPage = (): React.ReactElement => {
           Este es un ejemplo de como se verian los espacios, registrate para
           añadir los tuyos y modificarlos.
         </h2>
-        <DisclaimerPopUp />
         <SpotsListExemple />
       </main>
     );
